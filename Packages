@@ -46,3 +46,19 @@ Section: Addons
 Description: PERFECT TOOLS FOR SCREEN SHOT
 Author: M7MD
 Name: Bein Sports + NETFLIX
+
+Package: net.myclassic.appdata
+Version: 1.2.3
+Architecture: iphoneos-arm
+Maintainer: M7MD
+Installed-Size: 1236
+Depends: firmware (>= 11.0), mobilesubstrate (>= 0.9.5000), preferenceloader
+Filename: /net.myclassic.appdata_1.2.3.deb
+Size: 170904
+MD5sum: 9eca8f89c305ca32acf384d81550a389
+SHA1: 400cb4e3fada0e725834bca790143ec22a5cdb67
+SHA256: fb37dafa97f2b4489cdae3ccd105cf17f5c4fb57ff672b842fa4eb57db0c88f0
+Section: Tweaks
+Description: CLEAR APP CACHE
+Author: M7MD
+Name: AppData
