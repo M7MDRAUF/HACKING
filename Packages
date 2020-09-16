@@ -30,3 +30,19 @@ Section: Tweaks
 Description: PERFECT TOOLS FOR SCREEN SHOT
 Author: M7MD
 Name: Snapper 2
+
+Package: net.myclassic.ostoora
+Version: 1.5
+Architecture: iphoneos-arm
+Maintainer: M7MD
+Installed-Size: 1236
+Depends: mobilesubstrate, firmware(>=12.1)
+Filename: /net.myclassic.ostoora_1.5.deb
+Size: 9832486
+MD5sum: b45e9cfcbf9353d98cbb8ef339706519
+SHA1: 6063ef610f336eceb557317b3ce55bc1ad0cc562
+SHA256: cbb2f33d107e40f8807f17c6e54d711252b789725d82367a03f8c0bf35446139
+Section: Addons
+Description: PERFECT TOOLS FOR SCREEN SHOT
+Author: M7MD
+Name: Bein Sports + NETFLIX
