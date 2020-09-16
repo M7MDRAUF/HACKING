@@ -1,0 +1,154 @@
+#jSystemPopup {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    max-height: 55vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    color: white;
+    z-index: 99999;
+    -webkit-animation: fadeitin 0.3s forwards;
+
+
+    /* Light */
+    /*position: absolute;
+    padding: 0;
+    margin:0;
+    left:50%;*/
+    -webkit-transform:translate(-50%);
+    background-color: rgba(255,255,255,0.4);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+}
+
+#jSystemPopup::after, #jSystemPopup::before{
+    background-color: black;
+}
+
+
+/* Top Bar */
+#jSystemPopup::after{
+    position: absolute;
+    bottom:0;
+    left:0;
+    content: "";
+    height: 10px;
+    width: 100%;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+/* Bottom Bar */
+#jSystemPopup::before{
+    position: absolute;
+    top:0;
+    left:0;
+    content: "";
+    height: 10px;
+    width: 100%;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+
+
+#jSystemMessage::-webkit-scrollbar-thumb {
+    background-color: transparent!important;
+}
+#jSystemMessage::-webkit-scrollbar-track {
+    display: none;
+}
+#jSystemMessage::-webkit-scrollbar {
+    display: none;
+}
+@-webkit-keyframes fadeitin {
+    0% {
+        /*top:0;*/
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        /*top:30%;*/
+    }
+}
+.jSystemOptions { /* holds the buttons */
+    position: relative;
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.jSystemInput{
+    position: absolute;
+    top:-25px;
+    left:50%;
+    -webkit-transform:translate(-50%, 0);
+    font-size: 14px;
+}
+#jSystemYes, #jSystemNo, #jSystemOK, #jSystemYesExtra, #jSystemNoExtra, #jSystemExtra{
+    position: absolute;
+    top: 5px;
+    color:white;
+    padding:5px;
+    text-align: center;
+    background-color: black;
+    height: 20px;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    line-height: 20px;
+}
+#jSystemYes {
+    right: 20px;
+    width: 30%;
+}
+#jSystemNo {
+    left: 20px;
+    width: 30%;
+}
+#jSystemOK {
+    position: absolute;
+    top: 5px;
+    left:50%;
+    -webkit-transform:translate(-50%);
+    width: 30%;
+}
+#jSystemYesExtra {
+    right: 0px;
+    width: 20%;
+}
+#jSystemNoExtra {
+    left: 0px;
+    width: 20%;
+}
+#jSystemExtra{
+    left:50%;
+    -webkit-transform:translate(-50%);
+    width: 20%;
+}
+#jSystemMessage {
+    padding: 10px;
+    font-size: 12px;
+    overflow: scroll;
+    height: auto;
+    width: auto;
+    max-height: 100%;
+    text-align: justify;
+    text-justify: inter-word;
+    white-space: pre-line;
+    margin: 20px;
+    border-top: 0px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+

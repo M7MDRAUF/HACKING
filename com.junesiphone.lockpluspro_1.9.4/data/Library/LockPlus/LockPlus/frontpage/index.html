@@ -1,0 +1,77 @@
+<!-- Created by JunesiPhone via LockPlus Pro -->
+<!-- This is for personal use only -->
+<!-- It's not to be sold, if you want to sell a widget code it yourself -->
+
+
+<html id="html">
+
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1 user-scalable=no">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="features/basicWindow.css">
+    <link rel="stylesheet" type="text/css" href="features/cloudWindow.css">
+    <link rel="stylesheet" type="text/css" href="features/switches.css">
+    <link rel="stylesheet" type="text/css" href="features/toggleContainer.css">
+    <link rel="stylesheet" type="text/css" href="features/quickMenu.css">
+    <link rel="stylesheet" type="text/css" href="drawer/drawer.css">
+</head>
+
+<body id="body">
+    <input id="imageSelector" style="display:none;"class="imageInput" type="file" accept="image/*;capture=camera">
+    <div id="mainContainer" class="container">
+        <div id="screenElements"></div>
+    </div>
+
+    <script src="js/prefixfree.min.js"></script>
+    <script src="js/globals.js"></script>
+    <script src="js/sizing.js"></script>
+    <script src="js/actions.js"></script>
+
+    <script src="features/pressure.js"></script>
+    <script src="js/music.js"></script>
+    <script src="drawer/drawer.js"></script>
+    <script src="js/frontpage.js"></script>
+    <script src="js/flipclock.js"></script>
+    <script src="LPP.js"></script>
+    <script src="js/setup.js"></script>
+    <script src="js/elements.js"></script>
+    <script src="js/mainLoop.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/SBChanges.js"></script>
+    <script src="js/loaded.js"></script>
+    <script src="js/coloricon.js"></script>
+    <script src="js/fix.js"></script>
+
+    <script src="features/jquery.js"></script>
+    <script src="features/jqueryui.js"></script>
+    <script src="features/UITouchPunch.js"></script>
+    <script src="features/spectrum.js"></script>
+    <script src="features/lStorage.js"></script>
+    <script src="features/multipleTap.js"></script>
+    <script src="features/globals.js"></script>
+    <script src="features/eventsController.js"></script>
+    <script src="features/appQuickMenu.js"></script>
+    <script src="features/windowMaker.js"></script>
+    <script src="features/cloudWindow.js"></script>
+    <script src="features/switches.js"></script>
+    <script src="features/toggleMaker.js"></script>
+    <script src="features/drawerMenu.js"></script>
+    <script src="features/mainMenu.js"></script>
+    <script src="features/event.js"></script>
+    <script src="features/settings.js"></script>
+
+    <script src="/var/FPI.js"></script>
+
+    <script>
+        //Prevent iOS moving page
+        window.onscroll = function(ev) {
+            if (window.scrollY > 0 || window.scrollX > 0) {
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1 maximum-scale=1.0, user-scalable=0">
+	<style type="text/css">
+		* {
+			margin:0;
+			padding:0;
+            pointer-events: none;
+        }
+        body{
+            /* background-color:black; */
+        }
+	</style>
+</head>
+<body>
+
+<div id="animations"></div>
+<script type="text/javascript">
+
+var lilHelp = {
+    createCanvas: function (id, width, height) {
+        var canvas = document.createElement('canvas');
+        canvas.id = id;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.position = 'absolute';
+        document.getElementById('animations').appendChild(canvas);
+        return canvas;
+    },
+    randomInt: function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    },
+    randomNum: function (min, max) {
+        return Math.random() * (max - min + 1) + min;
+    }
+};
+	
+var moonOBJ = {
+    canvasCTX: null,
+    leftMax: -250,
+    speed: 10,
+    variationCount: 6,
+    currentTop: lilHelp.randomNum(-50, 300),
+    randomStep: Math.round(lilHelp.randomNum(1, this.variationCount) - 1),
+    step: 0,
+    alpha: 0,
+    delta: 0.001,
+    timer1: 0,
+    topNum: function () {
+        return lilHelp.randomNum(-50, 300);
+    },
+    clearCanvas: function () {
+        this.canvasCTX.save();
+        this.canvasCTX.clearRect(0, 0, window.screen.width, window.screen.height);
+    },
+    drawmoon: function () {
+        var moonCanvas = document.getElementById('canvasmoon'),
+            imageObj;
+        this.canvasCTX = moonCanvas.getContext("2d");
+        imageObj = new Image();
+        imageObj.onload = function () {
+            (function animloop() {
+                window.requestAnimationFrame(animloop);
+                moonOBJ.animoon(moonOBJ.canvasCTX, imageObj);
+            }());
+        };
+        imageObj.src = 'img/moon.png';
+    },
+    moonInit: function () {
+        lilHelp.createCanvas('canvasmoon', window.screen.width, window.screen.height);
+        this.drawmoon();
+    },
+    getPos: function (){
+        pos = screen.width - 150;
+        return pos;
+    },
+    animoon: function (ctx, image1, image2, image3) {
+        this.leftMax = this.leftMax + this.speed;
+        var leftMax = this.leftMax,
+            topNum = this.currentTop,
+            imgWidth = 100,
+            imgHeight = 100;
+            this.timer1++
+            if(this.timer1 > 1990 && this.timer1 < 3500){
+                ctx.globalAlpha = 0;
+                this.getPos();
+                this.clearCanvas();
+                ctx.drawImage(image1, this.getPos(), -50, imgWidth, imgHeight);
+            }else{
+                this.alpha += this.delta;
+                if (this.alpha <= 0 || this.alpha >= 1) this.delta = -this.delta;
+                ctx.globalAlpha = this.alpha;
+                //ctx.save();
+                this.getPos();
+                this.clearCanvas();
+                ctx.drawImage(image1, this.getPos(), -50, imgWidth, imgHeight);
+            }
+            if(this.timer1 > 3500){
+                this.timer1 = 0;
+            }
+    }
+
+};
+
+var starOBJ = {
+    cstarWidth: window.screen.width,
+    cstarHeight: 200,
+    cStarCanvas: null,
+    context: null,
+    pxs: [],
+    twinkle: 10,
+    starAmount: 50,
+    starInit: function () {
+        var i;
+        this.cStarCanvas = lilHelp.createCanvas('canvasStar', window.screen.width, 200);
+        this.context = this.cStarCanvas.getContext('2d');
+
+        for (i = 0; i < starOBJ.starAmount; i += 1) {
+            starOBJ.pxs[i] = new this.Circle();
+            starOBJ.pxs[i].resetCX();
+        }
+        setInterval(starOBJ.drawstar, starOBJ.twinkle);
+    },
+    drawstar: function () {
+        var i;
+        starOBJ.context.clearRect(0, 0, starOBJ.cstarWidth, starOBJ.cstarHeight);
+        for (i = 0; i < starOBJ.pxs.length; i += 1) {
+            starOBJ.pxs[i].fadestar();
+            if (i === 18) {
+                starOBJ.pxs[i].movestar();
+            }
+            starOBJ.pxs[i].drawstar();
+        }
+    },
+    Circle: function () {
+        this.s = {
+            timetolive: 1000,
+            xspeed: 20,
+            yspeed: 4,
+            radius: 0.5,
+            rt: 1,
+            xorigin: window.screen.width,
+            yorigin: 10,
+            xdrift: 4,
+            ydrift: 3,
+            random: true,
+            blink: true
+        };
+        this.resetCX = function () {
+            this.x = (this.s.random ? starOBJ.cstarWidth * Math.random() : this.s.xorigin);
+            this.y = (this.s.random ? starOBJ.cstarHeight * Math.random() - 50 : this.s.yorigin - 50);
+            this.r = ((this.s.radius - 1) * Math.random()) + 1;
+            this.dx = (Math.random() * this.s.xspeed) * (Math.random() < 0.5 ? -1 : 1);
+            this.dy = (Math.random() * this.s.yspeed) * (Math.random() < 0.5 ? -1 : 1);
+            this.hl = (this.s.timetolive / starOBJ.twinkle) * (this.r / this.s.radius);
+            this.rt = Math.random() * this.hl;
+            this.s.rt = Math.random() + 1;
+            this.stop = Math.random() * 0.2 + 0.4;
+            this.s.xdrift *= Math.random() * (Math.random() < 0.5 ? -1 : 1);
+            this.s.ydrift *= Math.random() * (Math.random() < 0.5 ? -1 : 1);
+        };
+        this.fadestar = function () {
+            this.rt += this.s.rt;
+        };
+        this.drawstar = function () {
+            if (this.s.blink && (this.rt <= 0 || this.rt >= this.hl)) {
+                this.s.rt = this.s.rt * -1;
+            } else if (this.rt >= this.hl) {
+                this.resetCX();
+            }
+            var newone = 1 - (this.rt / this.hl);
+            starOBJ.context.beginPath();
+            starOBJ.context.arc(this.x, this.y, this.r, 0, Math.PI * 2, true);
+            starOBJ.context.closePath();
+            starOBJ.context.fillStyle = 'rgba(255,255,255,' + newone + ')';
+            starOBJ.context.fill();
+        };
+        this.movestar = function () {
+            this.x += (this.rt / this.hl) * this.dx;
+            this.y += (this.rt / this.hl) * this.dy;
+            if (this.y > starOBJ.cstarHeight - 50 || this.y < 0) {
+                this.dy *= -1;
+            }
+        };
+    }
+};
+
+starOBJ.starInit();
+moonOBJ.moonInit();
+
+</script>
+</body>
+</html>

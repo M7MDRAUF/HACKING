@@ -1,0 +1,104 @@
+body{
+  margin:0;
+  padding:0;
+  font-family: 'helvetica neue';
+  background-color: rgba(0,0,0,0.5);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+/* Bridge List */
+.bridges{
+  position: relative;
+  top:50px;
+  width: 100px;
+  height: 95px;
+  border-radius: 5px;
+  background-color: white;
+  margin: 0 auto;
+}
+.bridges label{
+  display: block;
+  width: 100%;
+  margin-bottom:5px;
+  text-align: center;
+}
+.bridges #bridgeList{
+  width:100px;
+  height: 50px;
+  margin:0 auto;
+  background-color: rgba(0,0,0,0.1);
+  overflow: scroll;
+  font-size:13px;
+  text-align: center;
+}
+.bridges #status{
+  position: absolute;
+  bottom:2px;
+  color:black;
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Lights and Rooms Panels */
+.panel{
+  position: absolute;
+  top:50%;
+  -webkit-transform:translate(0,-50%);
+  width: 140px;
+  height: 220px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.panel label{
+  text-align: center;
+  display: block;
+  margin-top:5px;
+  margin-bottom: 5px;
+}
+
+/* Lights and Rooms Lists */
+.list{
+  margin:0 auto;
+  width: 140px;
+  height: 192px;
+  overflow: scroll;
+  text-align: center;
+  font-size:13px;
+  background-color: rgba(0,0,0,0.1);
+}
+.list div {
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+.lights{
+  left:10px;
+}
+
+.groups{
+  right:10px;
+}
+
+/* Buttons */
+.button{
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  background-color: white;
+  color:black;
+  text-align: center;
+  left:50%;
+  -webkit-transform:translate(-50%, 0);
+  border-radius: 5px;
+}
+#clearALL{
+  bottom:100px;
+}
+#help{
+  bottom:70px;
+}
+#exit{
+  bottom:40px;
+}

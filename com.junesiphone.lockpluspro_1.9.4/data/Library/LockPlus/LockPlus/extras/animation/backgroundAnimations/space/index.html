@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<style>
+		body{
+			/*background: black;*/
+		}
+		#space{
+			position: absolute;
+			top:0;
+			left:0;
+		}
+	</style>
+</head>
+<body>
+
+<script src="./js/Three.js"></script>
+<script src="./js/Stats.js"></script>
+<script src="./js/ParticleEngine.js"></script>
+
+<div id="space"></div>
+
+<script>
+var spaceAni = {
+	stats: false,
+	container: document.getElementById('space'),
+	scene: null,
+	camera: null,
+	renderer: null,
+	engine: null,
+	stats: null,
+	clock: new THREE.Clock(),
+	width: window.innerWidth,
+	height: window.innerHeight,
+	setCamera: function() {
+		var angle = 45,
+			aspect = this.width / this.height,
+			near = 2,
+			far = 5000;
+			this.camera = camera = new THREE.PerspectiveCamera( angle, aspect, near, far);
+			this.camera.position.set(0, 200, 400);
+			this.camera.lookAt(window.scene.position);
+			this.setRenderer();
+	},
+	setEngine: function() {
+		this.engine = new ParticleEngine();
+		this.engine.setValues({
+			positionStyle  : Type.CUBE,
+        	positionBase   : new THREE.Vector3( 0, 0, 0 ),
+        	positionSpread : new THREE.Vector3( 10, 10, 10 ),
+
+        	velocityStyle  : Type.CUBE,
+        	velocityBase   : new THREE.Vector3( 0, 100, 200 ),
+        	velocitySpread : new THREE.Vector3( 40, 40, 80 ), 
+        
+        	angleBase               : 0,
+        	angleSpread             : 720,
+        	angleVelocityBase       : 10,
+        	angleVelocitySpread     : 0,
+        
+        	particleTexture : THREE.ImageUtils.loadTexture( 'images/glow.png' ),
+
+        	sizeBase    : 2.0,
+        	sizeSpread  : 4.0,              
+        	colorBase   : new THREE.Vector3(1.0, 1.0, 1.0), // H,S,L
+        	opacityBase : 1,
+        	blendStyle  : THREE.AdditiveBlending,
+
+        	particlesPerSecond : 500,
+        	particleDeathAge   : 4.0,       
+        	emitterDeathAge    : 60
+    	});
+    	this.engine.initialize();
+	},
+	setRenderer: function() {
+		this.renderer = new THREE.WebGLRenderer({
+			antialias:true,
+			alpha:true
+		});
+		this.renderer.setClearColor( 0x000000, 0);
+		this.renderer.setSize(spaceAni.width, spaceAni.height);
+		this.container.appendChild(this.renderer.domElement);
+		this.setEngine();
+	},
+	setStats: function() {
+		if(this.stats){
+			this.stats = new Stats();
+			this.stats.domElement.style.position = 'absolute';
+			this.stats.domElement.style.top = '100px';
+			this.stats.domElement.style.left = '50px';
+			this.stats.domElement.style.zIndex = 999;
+			this.container.appendChild(this.stats.domElement);
+		}
+	},
+	setScene: function() {
+		window.scene = new THREE.Scene();
+		this.setCamera();
+	},
+	animate : function() {
+    	requestAnimationFrame( spaceAni.animate );
+		spaceAni.render();		
+		spaceAni.update();
+	},
+	update: function(){
+		if(this.stats){
+			stats.update();
+		}
+		var dt = this.clock.getDelta();
+		this.engine.update( dt * 0.5 );	
+	},
+	render: function() {
+		this.renderer.render( window.scene, this.camera );
+	}
+};
+spaceAni.setScene();
+spaceAni.animate();
+</script>
+</body>
+</html>

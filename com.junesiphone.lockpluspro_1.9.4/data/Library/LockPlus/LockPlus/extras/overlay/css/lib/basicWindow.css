@@ -1,0 +1,116 @@
+.windowContainer{
+	/* white-space: nowrap; */
+    text-align: center;
+    background-color:rgba(255,255,255,0.4)!important;
+    -webkit-backdrop-filter: blur(7px);
+    border:1px solid rgba(0,0,0,0.5);
+    border-radius: 10px;
+}
+/* Top Bar */
+.windowContainer::after{
+	position: absolute;
+	bottom:0;
+	left:0;
+	content: "";
+	height: 25px;
+	width: 100%;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+/* Bottom Bar */
+.windowContainer::before{
+	position: absolute;
+	top:0;
+	left:0;
+	content: "";
+	height: 25px;
+	width: 100%;
+	border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    z-index: 1;
+}
+.windowContainer::after, .windowContainer::before{
+    background-color:black;
+}
+.windowTitle{
+    position: absolute;
+    left:20px;
+    top:5px;
+    width:auto;
+    /* background-color:red; */
+    font-size: 12px;
+    text-align: center;
+    text-transform: capitalize;
+    z-index: 1;
+}
+.windowBackButton{
+	position: absolute;
+	top:13px;
+	right: 72px;
+	z-index: 9;
+}
+.windowClose{
+	width: 40px;
+    height: 40px;
+    position: absolute;
+	top:-7px;
+	right:5px;
+	/*right:10px;*/
+	z-index: 9;
+	/*border-radius: 5px;*/
+}
+.windowClose::after, .windowBackButton::after{
+	position: absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%, -50%);
+	width: 40px;
+	text-align: center;
+	height: 15px;
+
+	border-radius: 5px;
+	/*background-color: black;*/
+	color:white;
+	content: "Close";
+	font-size: 9px;
+	line-height: 15px;
+	font-weight: bold;
+	border:2px solid rgba(255,255,255,0.2);
+}
+.windowClose::after{
+	/*border-top-right-radius: 20px!important;*/
+	border-top-right-radius: 10px;
+}
+.windowBackButton::after{
+	border-top-left-radius: 10px;
+	content: "Back";
+	/*border-right: 1px solid rgba(255,255,255,0.5);*/
+}
+.windowInfoDragger{
+	position: absolute;
+	top:0;
+	width: 100%;
+	height: 40px;
+	/*background-color: red;*/
+	line-height: 40px;
+	color:white;
+	z-index: 99999;
+}
+.windowInfoDragger::after{
+	position: absolute;
+	top:10px;
+	left:4px;
+	width: 40px;
+	text-align: center;
+	height: 15px;
+
+	border-radius: 5px;
+	/*background-color: black;*/
+	color:white;
+	content: "drag";
+	font-size: 9px;
+	line-height: 15px;
+	font-weight: bold;
+	border-bottom-left-radius: 10px;
+	border:2px solid rgba(255,255,255,0.2);
+}

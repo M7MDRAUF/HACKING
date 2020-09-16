@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<link href="style.css" rel="stylesheet">
+	</head>
+
+	<body>
+
+		<div class="container">
+			<div id='timer'>00:00:00:00</div>
+			<div id='labels'>
+				<span id='hh'>Hours</span>
+				<span id='mm'>Minutes</span>
+				<span id='ss'>Seconds</span>
+				<span id='ms'>Milliseconds</span>
+			</div>
+
+			<div id='controls'>
+				<button onclick='startTimer()' id='go'>Go</button>
+				<button onclick='location.href = "file:///Library/LockPlus/LockPlus/index.html";' id='exit'>Exit</button>
+				<button onclick='stopTimer()'  id='stop'>Stop</button>
+				<button onclick='clearTimer()' id='clear'>Clear</button>
+			</div>
+		</div>
+
+		<script src="./script.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1 maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="css/jpopup.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/basicWindow.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/cloudView.css">
+</script>
+</head>
+<body> 
+    <div id="stats">Select or add an image</div>
+    <div id="sizeRef"></div>
+
+    <input type="file" name="imagefile" id="imagefile" style="position:absolute;display: none"/>
+    <div id="images" style="position:absolute;display:none;"></div>
+    <canvas id="canvas"></canvas>
+
+
+<script>
+
+var sizeRef = document.getElementById('sizeRef');
+ document.getElementById('canvas').style.width = sizeRef.offsetWidth + "px";
+ document.getElementById('canvas').style.height = sizeRef.offsetHeight + "px";
+ //document.getElementById('body').style.height = screen.height + "px";
+
+ //document.getElementById('debug').innerHTML += document.getElementById('canvas').style.width;
+ //document.getElementById('debug').innerHTML += document.getElementById('canvas').style.height;
+</script>
+<!-- Libraries -->
+<script type="text/javascript" src="js/lib/includes/jquery.js"></script>
+<script type="text/javascript" src="js/lib/includes/jqueryui.js"></script>
+<script type="text/javascript" src="js/lib/includes/UITouchPunch.js"></script>
+<script type="text/javascript" src="js/lib/includes/eventsController.js"></script>
+<script type="text/javascript" src="js/lib/includes/createDom.js"></script>
+<script type="text/javascript" src="js/main/tools/globals.js"></script>
+
+<script type="text/javascript" src="js/lib/windows/basicWindow.js"></script>
+<script type="text/javascript" src="js/lib/windows/cloudView.js"></script>
+
+<script type="text/javascript" src="js/main/menus/mainMenu.js"></script>
+
+<script type="text/javascript" src="js/lib/paper-full.js"></script>
+<script type="text/javascript" src="js/lib/jpopup.js"></script>
+
+<!-- Main -->
+<script type="text/javascript" src="js/main/main.js"></script>
+
+<!-- Tools -->
+<script type="text/javascript" src="js/main/tools/cornerRadius.js"></script>
+<script type="text/javascript" src="js/main/tools/select.js"></script>
+<script type="text/javascript" src="js/main/tools/addImage.js"></script>
+
+</body>
+</html>

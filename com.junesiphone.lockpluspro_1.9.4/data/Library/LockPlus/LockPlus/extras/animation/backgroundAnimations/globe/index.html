@@ -1,0 +1,124 @@
+<html>
+<head>
+</head>
+<body>
+	<script type="text/javascript" src="../weather/js/THREE-r84.js"></script>
+    <script type="text/javascript" src="../weather/js/SPE.min.js"></script>
+    <script type="text/javascript" src="../weather/js/Stats.min.js"></script>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+    </style>
+    <script>
+        var scene, camera, renderer, stats, stats2, clock,
+        testing = false,
+        particleGroup;
+
+    /* testing */
+    function loadJS(url, implementationCode, location) {
+        var scriptTag = document.createElement('script');
+        scriptTag.src = url;
+        scriptTag.onload = implementationCode;
+        scriptTag.onreadystatechange = implementationCode;
+        location.appendChild(scriptTag);
+    }
+
+    function createFPS() {
+        stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.top = '65px';
+        stats.domElement.style.left = '30px';
+        document.body.appendChild(stats.domElement);
+        document.body.style.backgroundColor = "black";
+        statsLoaded = true;
+    }
+
+    function loadStatsJS() {
+        loadJS('../weather/js/Stats.min.js', createFPS, document.body);
+    }
+    /* testing */
+
+    function init() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 10000);
+        camera.lookAt(scene.position);
+        renderer = new THREE.WebGLRenderer({
+            alpha: true
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+
+        if (testing) {
+            if (testing) {
+                loadStatsJS();
+            }
+        }
+        clock = new THREE.Clock();
+        document.body.appendChild(renderer.domElement);
+    }
+
+    // Create particle group and emitter
+    function initParticles() {
+        particleGroup = new SPE.Group({
+            texture: {
+                value: THREE.ImageUtils.loadTexture('../weather/img/dot.png')
+            }
+        });
+
+        var emitter = new SPE.Emitter({
+            type: 2,
+            maxAge: {
+                value: 1
+            },
+            position: {
+                value: new THREE.Vector3(-50 + (2 * 25), 0, 0),
+                radius: 4,
+                spread: new THREE.Vector3(5, 5, 5),
+                spreadClamp: new THREE.Vector3(2, 2, 2)
+            },
+
+            color: {
+                value: [new THREE.Color('white'), new THREE.Color('red')]
+            },
+
+            size: {
+                value: 1
+            },
+            isStatic: true,
+
+            particleCount: 500
+        });
+
+        particleGroup.addEmitter(emitter);
+
+        scene.add(particleGroup.mesh);
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        var now = Date.now() * 0.001;
+        camera.position.x = Math.sin(now) * 75;
+        camera.position.z = Math.cos(now) * 75;
+        camera.lookAt(scene.position);
+
+        render(clock.getDelta());
+        if (testing) {
+            stats.update();
+        }
+    }
+
+    function render(dt) {
+        particleGroup.tick(dt);
+        renderer.render(scene, camera);
+    }
+
+    init();
+    initParticles();
+
+    setTimeout(animate, 0);
+    </script>
+</body>
+</html>

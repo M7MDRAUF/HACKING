@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		* {
+			margin:0;
+			padding:0;
+            pointer-events: none;
+		}
+	</style>
+</head>
+<body>
+
+<div id="animations"></div>
+
+
+<script type="text/javascript">
+
+	var WS = {
+    weatherCode: 0, //IS2 InfoStats.currentIcon()
+    refreshRate: 60000 * 10, //10 minutes
+    rainColor: 'white', // String(options.dropColor)
+    rainType: 'lines', //normal, lines
+    starsOut: true,
+    weatherParts: [], //array containing rain or snow
+    snowCodes: [5, 6, 7, 13, 14, 15, 16, 41, 42, 43, 46],
+    rainCodes: [1, 2, 3, 4, 8, 9, 10, 11, 12, 17, 18, 35, 37, 38, 39, 40, 42, 45, 47],
+    cloudCodes: [0, 19, 20, 21, 22, 26, 27, 28, 29, 30, 44, 34, 33],
+    lightningCodes: [1, 2, 3, 4, 37, 38, 39, 45, 47],
+    sunCodes: [32, 36],
+    rainAni: null,
+    cloudAni: null,
+    sunAni: null,
+    lightningAni: null,
+    firstLoad: true,
+    compare: function (code, parts, rainAni, cloudAni, lightningAni, starsOut, sunAni) {
+        //Check to see if any codes match a weather animation
+        
+        if (code.indexOf(Number(this.weatherCode)) > -1) {
+            if (parts !== null) {
+                this.weatherParts.push(parts);
+            }
+            if (rainAni) {
+                this.rainAni = rainAni;
+            }
+            if (cloudAni) {
+                this.cloudAni = cloudAni;
+            }
+            if (lightningAni) {
+                this.lightningAni = lightningAni;
+            }
+            if (!starsOut) {
+                this.starsOut = starsOut;
+            }
+            if(sunAni){
+                this.sunAni = sunAni;
+            }
+            console.log(this.rainAni);
+        }
+    },
+    updateWeather: function () {
+        var newWeatherCode = injectedWeather.conditionCode;
+        //alert(newWeatherCode);
+        if (this.weatherCode !== newWeatherCode) {
+            this.weatherCode = newWeatherCode;
+            //this.weatherCode = 38;
+            document.getElementById('animations').innerHTML = '';
+            if(!this.firstLoad){
+                this.loadConditions();
+            }
+        }
+
+        setTimeout(function () {
+            WS.updateWeather();
+        }, WS.refreshRate);
+        this.firstLoad = false;
+    },
+    loadConditions: function () {
+        if (WS.rainAni) {
+            rainOBJ.rainInit();
+        }
+        if (WS.cloudAni) {
+            cloudOBJ.cloudInit();
+        }
+        if (WS.lightningAni) {
+            lightningOBJ.lightningInit();
+        }
+        if(WS.sunAni){
+            sunOBJ.sunInit();
+        }
+
+        //stars
+        var hr = (new Date()).getHours();
+        if (hr > 6 && hr < 20) {
+            //Do something for day
+        } else {
+            if (WS.starsOut && !WS.cloudAni && !WS.rainAni && !WS.lightningAni) {
+                starOBJ.starInit();
+            }
+        }
+    },
+    init: function () {
+        this.updateWeather();
+
+        this.compare(this.snowCodes, 'snow', true, false, false, false, false);
+        this.compare(this.rainCodes, 'rain', true, false, false, false, false);
+        this.compare(this.cloudCodes, null, false, true, false, false, false);
+        this.compare(this.lightningCodes, null, false, false, true, false, false);
+        this.compare(this.sunCodes, null, false, false, false, false, true);
+
+        this.loadConditions();
+
+    },
+    createCanvas: function (id, width, height) {
+        var canvas = document.createElement('canvas');
+        canvas.id = id;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.position = 'absolute';
+        document.getElementById('animations').appendChild(canvas);
+        return canvas;
+    },
+    randomInt: function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    },
+    randomNum: function (min, max) {
+        return Math.random() * (max - min + 1) + min;
+    },
+
+};
+	
+	var sunOBJ = {
+    canvasCTX: null,
+    leftMax: -250,
+    speed: 10,
+    variationCount: 6,
+    currentTop: WS.randomNum(-50, 300),
+    randomStep: Math.round(WS.randomNum(1, this.variationCount) - 1),
+    step: 0,
+    alpha: 0,
+    delta: 0.001,
+    timer1: 0,
+    topNum: function () {
+        return WS.randomNum(-50, 300);
+    },
+    clearCanvas: function () {
+        this.canvasCTX.save();
+        this.canvasCTX.clearRect(0, 0, window.screen.width, window.screen.height);
+    },
+    drawSun: function () {
+        var sunCanvas = document.getElementById('canvasSun'),
+            imageObj;
+        this.canvasCTX = sunCanvas.getContext("2d");
+        imageObj = new Image();
+        imageObj.onload = function () {
+            (function animloop() {
+                window.requestAnimationFrame(animloop);
+                sunOBJ.aniSun(sunOBJ.canvasCTX, imageObj);
+            }());
+        };
+        imageObj.src = 'img/sun.png';
+    },
+    sunInit: function () {
+        WS.createCanvas('canvasSun', window.screen.width, window.screen.height);
+        this.drawSun();
+    },
+    getPos: function (){
+        var hr = new Date().getHours(),
+            pos = -50;
+        if(hr > 6 && hr < 9){
+            pos = -50;
+        }
+        if(hr > 9 && hr < 11){
+        	pos = 20;
+        }
+        if(hr > 12 && hr < 15){
+            pos = 80;
+        }
+        if(hr > 15 && hr < 25){
+            pos = screen.width - 200;
+        }
+
+        return pos;
+    },
+    aniSun: function (ctx, image1, image2, image3) {
+        this.leftMax = this.leftMax + this.speed;
+        var leftMax = this.leftMax,
+            topNum = this.currentTop,
+            imgWidth = 200,
+            imgHeight = 200;
+            this.timer1++
+            if(this.timer1 > 1990 && this.timer1 < 3500){
+                ctx.globalAlpha = 0;
+                this.getPos();
+                this.clearCanvas();
+                ctx.drawImage(image1, this.getPos(), -50, imgWidth, imgHeight);
+            }else{
+                this.alpha += this.delta;
+                if (this.alpha <= 0 || this.alpha >= 1) this.delta = -this.delta;
+                ctx.globalAlpha = this.alpha;
+                //ctx.save();
+                this.getPos();
+                this.clearCanvas();
+                ctx.drawImage(image1, this.getPos(), -50, imgWidth, imgHeight);
+            }
+            if(this.timer1 > 3500){
+                this.timer1 = 0;
+            }
+    }
+
+};
+sunOBJ.sunInit();
+</script>
+</body>
+</html>

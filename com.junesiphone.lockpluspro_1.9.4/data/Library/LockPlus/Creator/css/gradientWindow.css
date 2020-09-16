@@ -1,0 +1,225 @@
+.gradientWindow{
+	position: absolute;
+	padding: 0;
+	margin:0;
+	left:50%;
+	-webkit-transform:translate(-50%);
+	bottom:10vh;
+	width: 95%;
+	height: auto;
+	/*overflow: scroll;*/
+	border-radius: 10px;
+	padding-bottom:30px;
+	padding-top:30px;
+	/*padding-top:10px;*/
+	/*background-color: black;*/
+	z-index: 9;
+	/*max-height: 0;*/
+	background-color: rgba(255,255,255,0.3);
+	-webkit-backdrop-filter:blur(10px);
+	border:1px solid rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+	/*background-color: rgba(0,0,0,0.6);
+	-webkit-backdrop-filter:blur(10px);*/
+	-webkit-transition: opacity 0.5s ease-in;
+	text-align: center;
+	overflow: hidden;
+}
+.gradientWindow::after, .gradientWindow::before{
+	background-color:black;
+}
+.gradientWindow::after{
+	position: absolute;
+	bottom:0;
+	left:0;
+	content: "";
+	height: 25px;
+	width: 100%;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+/* Bottom Bar */
+.gradientWindow::before{
+	position: absolute;
+	top:0;
+	left:0;
+	content: "";
+	height: 25px;
+	width: 100%;
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+}
+.gradientPreview{
+	position: relative;
+	margin: 0 auto;
+	height: 40px;
+	width: 90%;
+	border-radius: 10px;
+	font-size: 25px;
+	line-height: 40px;
+	font-weight: bold;
+}
+
+.gradientButton{
+	position: relative;
+	margin: 0 auto;
+	margin-top:10px;
+	margin-bottom:10px;
+	width: auto;
+	max-width: 100%;
+	height: 20px;
+	background-color:black;
+	color:white;
+	border-radius:5px;
+	line-height: 20px;
+}
+.changeGradientColorButton, .changeGradientPositionButton{
+	font-size: 12px;
+	font-weight: 400;
+	white-space: nowrap;
+	color:black;
+	background-color: white;
+	width: 200px!important;
+	display: block;
+}
+.gradientType{
+	height: 20px;
+	width: 50%;
+	/*background-color:blue;*/
+	margin-bottom: 30px;
+}
+.gradientType::after{
+	position: absolute;
+	left:0;
+	margin-top: 20px;
+	content: "Change Gradient Type";
+	width: 100%;
+	text-align: center;
+	height: 20px;
+	color:white;
+	font-size: 8px;
+	/*background: red;*/
+}
+.gradientColorMenu{
+	width: 100%;
+	height: auto;
+	/*background-color:pink;*/
+	max-height: 120px;
+	padding-top:30px;
+	overflow: scroll;
+	-webkit-overflow-scrolling:touch;
+	text-align: center;
+	background-color:rgba(0,0,0,0.4);
+	/*border:1px solid black;*/
+}
+.gradientColorMenu::after{
+	content: "Select color block to adjust position";
+	position: absolute;
+	left:5px;
+	margin-top:-25px;
+	color:white;
+	font-size: 8px;
+}
+/* color container */
+.gradientColorsEdit{
+	width: 60px;
+	height: 110px;
+	display: inline-block;
+	/*background-color: blue;*/
+	margin-top:5px;
+	margin-bottom: 10px;
+	margin-right:10px;
+	padding-right:5px;
+	padding-left:5px;
+	background-color: rgba(255,255,255,0.1);
+	border-radius: 10px;
+	/*border:1px solid black;*/
+}
+/* color box */
+.gradientColors{
+	position: relative;
+	left:0;
+	width: 100%;
+	height: 35px;
+	margin-top:10px;
+	margin-bottom: 10px;
+	border-radius:2px;
+}
+.gradientPositionRange{
+	width: 100%;
+	height: 85px;
+	background-color: black;
+}
+.gradientPositionRange::after{
+	content: "Adjust color position 0% - 100%";
+	position: absolute;
+	left:5px;
+	margin-top:5px;
+	color:white;
+	font-size: 8px;
+}
+.gradientPositionRange .inputContainer,#sliderContainergradientPositionRange{
+	margin-top: 280px;
+}
+
+/*.sliderContainergradientPositionRange{
+	margin-top:100px;
+}*/
+.gradientButtonWindow{
+	position: relative;
+	width: 100%;
+	height: 60px;
+	text-align: center;
+}
+.gradientUpdateButton, .gradientApplyButton,.gradientHelpButton{
+	/*position: absolute;*/
+	/*bottom:20px;*/
+	height: 30px;
+	width: auto;
+	padding:5px;
+	border-radius:10px;
+	padding-left:10px;
+	padding-right:10px;
+	text-align: center;
+	line-height: 30px;
+	background-color: black;
+	display: inline-block;
+	margin:5px;
+	margin-top:10px;
+	color:white;
+	z-index: 9;
+}
+.gradientCloseButton{
+	position: absolute;
+	height: 20px;
+	width: 30px;
+	margin:0;
+	top:2px;
+	right:8px;
+	padding-right:2px;
+	padding-left:2px;
+	padding-top:2px;
+	background-color:transparent;
+}
+.gradientCloseButton::after, .gradientCloseButton::after{
+	position: absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%, -50%);
+	width: 40px;
+	text-align: center;
+	height: 15px;
+
+	border-radius: 5px;
+	/*background-color: black;*/
+	color:white;
+	content: "Close";
+	font-size: 9px;
+	line-height: 15px;
+	font-weight: bold;
+	border:2px solid rgba(255,255,255,0.2);
+}
+.gradientCloseButton::after{
+	/*border-top-right-radius: 20px!important;*/
+	border-top-right-radius: 10px;
+}

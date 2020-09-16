@@ -78,3 +78,19 @@ Section: Tweaks
 Description: SUPPORT FOR APPS THIRD PARTS
 Author: M7MD
 Name: AppSync Unified
+
+Package: com.junesiphone.lockpluspro
+Version: 1.9.4
+Architecture: iphoneos-arm
+Maintainer: M7MD
+Installed-Size: 54256
+Depends: mobilesubstrate, preferenceloader
+Filename: /com.junesiphone.lockpluspro_1.9.4.deb
+Size: 14200786
+MD5sum: 6e7edd781b555a6c9d21fabfcb775fe7
+SHA1: b626d324d375180bde3a472a2e3268fcb8e664ef
+SHA256: 584b527cab447e584dae3e548422f02179384e630a18889cc02a491160eaa31e
+Section: Addons (Tweaks)
+Description: LOCK YOUR APPS
+Author: M7MD
+Name: LockPlus Pro

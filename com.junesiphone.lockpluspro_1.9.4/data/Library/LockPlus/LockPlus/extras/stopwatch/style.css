@@ -1,0 +1,81 @@
+.container{
+  position: absolute;
+  left:50%;
+  top:50%;
+  -webkit-transform:translate(-50%, -50%);
+}
+#timer {
+  position: relative;
+  width: 310px;
+  font-size: 40px;
+  background-color: rgba(0,0,0,0.4);
+  -webkit-backdrop-filter:blur(10px);
+  color: white;
+  padding: 25px;
+  text-align: center;
+  letter-spacing: 10px;
+  border-radius: 10px;
+  z-index: 1;
+}
+#labels {
+  position: relative;
+  margin-top: -25px;
+  z-index: 3;
+  color: white;
+  font-size: 12px;
+}
+#hh {margin-left: 36px;}
+#mm {margin-left: 45px;}
+#ss {margin-left: 37px;}
+#ms {margin-left: 24px;}
+
+#controls {
+  margin-top: 30px;
+}
+
+button {
+  position: relative;
+  left:50%;
+  -webkit-transform:translate(-50%, 0);
+  width: 100px;
+  height: 40px;
+  /*float: left;*/
+  margin-left: 0px;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px transparent;
+  border: 1px solid transparent;
+}
+#go{ 
+  color:white;
+  background-color: rgba(0,0,0,0.4);
+  -webkit-backdrop-filter:blur(10px); 
+}
+#exit{ 
+  color:white;
+  margin-top:10px;
+  display: block;
+  background-color: rgba(0,0,0,0.4);
+  -webkit-backdrop-filter:blur(10px); 
+}
+
+#stop{ 
+  background-color: rgba(0,0,0,0.4);
+  -webkit-backdrop-filter:blur(10px);
+  color:white;
+  margin-top:10px;
+  display: none; 
+}
+
+#clear{ 
+  background-color: rgba(0,0,0,0.4);
+  color:white;
+  margin-top:10px;
+  -webkit-backdrop-filter:blur(10px);
+  display: none;
+}
+
+body, button {
+  font-family: 'Helvetica';
+}

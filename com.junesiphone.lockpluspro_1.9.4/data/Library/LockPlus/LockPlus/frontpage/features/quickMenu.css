@@ -1,0 +1,87 @@
+.quickMenu{
+    position:absolute;
+    width:150px;
+    height:auto;
+    min-height: 100px;
+    background-color:black;
+    overflow:scroll;
+
+    background-color:rgba(255,255,255,0.4)!important;
+    -webkit-backdrop-filter: blur(7px);
+    border:1px solid rgba(0,0,0,0.5);
+    border-radius: 10px;
+    z-index: 999;
+}
+.quickMenuClose{
+    position:absolute;
+    top:0;
+    width:15px;
+    height: 15px;
+    font-size:12px;
+    text-align: center;
+    right:0px;
+    background-color:black;
+    color:white;
+    border-bottom-left-radius: 5px;
+    z-index: 999;
+}
+/* Top Bar */
+.quickMenu::after{
+	position: absolute;
+	bottom:0;
+	left:0;
+	content: "";
+	height: 10px;
+	width: 100%;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+/* Bottom Bar */
+.quickMenu::before{
+	position: absolute;
+	top:0;
+	left:0;
+	content: "";
+	height: 10px;
+	width: 100%;
+	border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    z-index: 1;
+}
+.quickMenu::after, .quickMenu::before{
+    /* background-color:black; */
+}
+.quickMenuContainer{
+    position: relative;;
+    width:100%;
+    height: auto;
+    text-align: center;
+    /* background-color:black; */
+}
+.quickMenuButton:first-child{
+    margin-top:20px;
+}
+.quickMenuButton:last-child{
+    margin-bottom:20px;
+}
+.quickMenuButton{
+    width: auto;
+    min-width: 110px;
+    /* margin:5px; */
+	margin-top:5px;
+	margin-bottom:5px;
+	vertical-align: middle;
+	padding-left:10px;
+	padding-right:10px;
+	border-radius: 5px;
+	color:white;
+	text-align: center;
+	height: auto;
+	line-height:30px;
+    font-weight: 400;
+    font-size:13px;
+    text-transform: capitalize;
+    background-color:black;
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+    display: inline-block;
+}

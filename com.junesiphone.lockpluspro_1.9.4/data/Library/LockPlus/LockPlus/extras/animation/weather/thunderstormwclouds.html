@@ -1,0 +1,286 @@
+<html>
+<head>
+</head>
+<body>
+	<script type="text/javascript" src="js/THREE-r84.js"></script>
+    <script type="text/javascript" src="js/SPE.min.js"></script>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+    </style>
+    <div id="animations"></div>
+	<script type="text/javascript">
+        var scene, camera, renderer, stats, stats2, clock, emitter, particleGroup,
+        testing = false,
+        statsLoaded = false,
+        dropImages = ['img/drop.png', 'img/drop5.png'];
+
+
+        function getRandomDrop(){
+            var random = Math.floor(Math.random() * dropImages.length);
+            return dropImages[random];
+        }
+
+        /* testing */
+        function loadJS(url, implementationCode, location){
+            var scriptTag = document.createElement('script');
+            scriptTag.src = url;
+            scriptTag.onload = implementationCode;
+            scriptTag.onreadystatechange = implementationCode;
+            location.appendChild(scriptTag);
+        }
+        function createFPS(){
+            stats = new Stats();
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.top = '65px';
+            stats.domElement.style.left = '30px';
+            document.body.appendChild(stats.domElement);
+            document.body.style.backgroundColor = "black";
+            statsLoaded = true;
+        }
+        function loadStatsJS(){
+            loadJS('js/Stats.min.js', createFPS, document.body);
+        }
+        /* testing */
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 10000);
+            camera.position.y = -51;
+            renderer = new THREE.WebGLRenderer({
+                alpha:true
+            });
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            renderer.setClearColor( 0x000000, 0);
+            clock = new THREE.Clock();
+            if(testing){
+                loadStatsJS();
+            }
+            document.body.appendChild( renderer.domElement );
+        }
+
+        function initParticles() {
+        	particleGroup = new SPE.Group({
+        		texture: {
+                    value: new THREE.TextureLoader().load(getRandomDrop())
+                },
+                maxParticleCount: 250
+        	});
+
+        	emitter = new SPE.Emitter({
+                direction: 1,
+                maxAge: {
+                    value: 2
+                },
+        		position: {
+                    value: new THREE.Vector3(0, 0, -50),
+                    spread: new THREE.Vector3( 100, 0, 0),
+                    spreadClamp: new THREE.Vector3(0, 0, 0)
+                },
+        		acceleration: {
+                    value: new THREE.Vector3(0, -65, 0),
+                    spread: new THREE.Vector3( 0, 20, 0)
+                },
+        		velocity: {
+                    value: new THREE.Vector3(0, 2, 0),
+                    spread: new THREE.Vector3(5, 7.5, 5)
+                },
+                color: {
+                    value: [ new THREE.Color('white'), new THREE.Color('white') ]
+                },
+                size: {
+                    value: .9
+                },
+        		particleCount: 250,
+        	});
+
+        	particleGroup.addEmitter( emitter );
+        	scene.add( particleGroup.mesh );
+
+        }
+        function animate() {
+            requestAnimationFrame( animate );
+            render( clock.getDelta() );
+            if(testing && statsLoaded){
+                stats.update();
+            }
+        }
+        function render( dt ) {
+            particleGroup.tick( dt );
+            renderer.render( scene, camera );
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+            init();
+            initParticles();
+            setTimeout(animate, 0);
+        }, false);
+
+
+
+
+var WS = {
+    createCanvas: function (id, width, height) {
+        var canvas = document.createElement('canvas');
+        canvas.id = id;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.position = 'absolute';
+        document.getElementById('animations').appendChild(canvas);
+        return canvas;
+    }
+};
+    
+/** Lightning **/
+var lightningOBJ = {
+    canvasEL: null,
+    ctx: null,
+    width: window.screen.width,
+    height: window.screen.height,
+    lightningArray: [],
+    lightTimeCurrent: 0,
+    lightTimeTotal: 50,
+    randomInterval: 800,
+    YminDistance: 10,
+    YmaxDistance: 30,
+    startPoint: 0,
+    lightningInit: function () {
+        this.canvasEL = WS.createCanvas('canvasLightning', window.screen.width, window.screen.height);
+        this.ctx = this.canvasEL.getContext('2d');
+        this.loop();
+    },
+    randomNumber: function (min, max) {
+        return Math.floor((Math.random() * (max - min + 1)) + min);
+    },
+    clearCanvas: function () {
+        this.ctx.globalCompositeOperation = 'destination-out';
+        this.ctx.fillStyle = 'rgba(0,0,0,' + this.randomNumber(1, 30) / 100 + ')';
+        this.ctx.fillRect(0, 0, this.width, this.height);
+        this.ctx.globalCompositeOperation = 'source-over';
+    },
+    updateArray: function () {
+        var i = this.lightningArray.length,
+            light;
+        while (i--) {
+            light = this.lightningArray[i];
+            light.path.push({
+                x: light.path[light.path.length - 1].x + (this.randomNumber(0, light.xRange) - (light.xRange / 2)),
+                y: light.path[light.path.length - 1].y + (this.randomNumber(0, light.yRange))
+            });
+            if (light.path.length > light.pathLimit) {
+                this.lightningArray.splice(i, 1);
+            }
+            light.hasFired = true;
+        }
+    },
+    createBolt: function (x, y, canSpawn) {
+        this.lightningArray.push({
+            x: x,
+            y: y,
+            xRange: this.randomNumber(5, 30),
+            yRange: this.randomNumber(this.YminDistance, this.YmaxDistance),
+            path: [{
+                x: x,
+                y: y
+            }],
+            pathLimit: this.randomNumber(10, 40),
+            canSpawn: canSpawn,
+            hasFired: false
+        });
+    },
+    timer: function () {
+        this.lightTimeCurrent += 1;
+        if (this.lightTimeCurrent >= this.lightTimeTotal) {
+            var newX = this.randomNumber(100, this.width - 100),
+                newY = this.startPoint,
+                createCount = this.randomNumber(1, 3);
+            while (createCount--) {
+                this.createBolt(newX, newY, true);
+            }
+            this.lightTimeCurrent = 0;
+            this.lightTimeTotal = this.randomNumber(30, this.randomInterval);
+        }
+    },
+    loop: function () {
+        var loopIt = function () {
+            window.requestAnimationFrame(loopIt, lightningOBJ.canvas);
+            lightningOBJ.clearCanvas();
+            lightningOBJ.updateArray();
+            lightningOBJ.timer();
+            lightningOBJ.render();
+        };
+        loopIt();
+    },
+    render: function () {
+        var i = this.lightningArray.length,
+            light,
+            pathCount,
+            pc;
+        while (i--) {
+            light = this.lightningArray[i];
+
+            this.ctx.strokeStyle = 'hsla(0, 100%, 100%, ' + this.randomNumber(10, 100) / 100 + ')';
+            this.ctx.lineWidth = 1;
+            if (this.randomNumber(0, 30) === 0) {
+                this.ctx.lineWidth = 2;
+            }
+            if (this.randomNumber(0, 60) === 0) {
+                this.ctx.lineWidth = 3;
+            }
+            if (this.randomNumber(0, 90) === 0) {
+                this.ctx.lineWidth = 4;
+            }
+            if (this.randomNumber(0, 120) === 0) {
+                this.ctx.lineWidth = 5;
+            }
+            if (this.randomNumber(0, 150) === 0) {
+                this.ctx.lineWidth = 6;
+            }
+
+            this.ctx.beginPath();
+
+            pathCount = light.path.length;
+            this.ctx.moveTo(light.x, light.y);
+            for (pc = 0; pc < pathCount; pc += 1) {
+
+                this.ctx.lineTo(light.path[pc].x, light.path[pc].y);
+
+                if (light.canSpawn) {
+                    if (this.randomNumber(0, 100) === 0) {
+                        light.canSpawn = false;
+                        this.createBolt(light.path[pc].x, light.path[pc].y, false);
+                    }
+                }
+            }
+
+            if (!light.hasFired) {
+                this.ctx.fillStyle = 'rgba(255, 255, 255, ' + this.randomNumber(4, 12) / 100 + ')';
+                this.ctx.fillRect(0, 0, this.width, this.height);
+            }
+
+            if (this.randomNumber(0, 30) === 0) {
+                this.ctx.fillStyle = 'rgba(255, 255, 255, ' + this.randomNumber(1, 3) / 100 + ')';
+                this.ctx.fillRect(0, 0, this.width, this.height);
+            }
+            this.ctx.stroke();
+        }
+    }
+};
+
+lightningOBJ.lightningInit();
+
+
+	</script>
+    <iframe id="clouds" border=0 src="clouds4.html"></iframe>
+    <script type="text/javascript">
+       var clouds = document.getElementById('clouds');
+            clouds.style.width = 320;
+            clouds.style.height = screen.height;
+            clouds.frameBorder = 0;
+            clouds.style.pointerEvents = "none";
+            clouds.style.position = "absolute";
+    </script>
+</body>
+</html>

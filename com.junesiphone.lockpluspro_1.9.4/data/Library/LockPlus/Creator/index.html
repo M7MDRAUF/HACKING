@@ -1,0 +1,420 @@
+<html>
+
+<head>
+	<title>LockPlus Creator</title>
+	<meta charset="UTF-8">
+
+	<script>
+		/* used for loading lppTemplates */
+		var lppTemplates = {};
+	</script>
+
+	<!-- Site description and twitter card -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0">
+	<meta name="description" content="Lock + Lockscreen designer for iPhones in your browser">
+	<link rel="author" href="https://plus.google.com/107601000975926769542/posts">
+	<meta name="keywords" content="JunesiPhone, JunesGraphics, Apple, jailbreak, lockscreen, designer, LockPlus">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@JunesiPhone">
+	<meta name="twitter:creator" content="@JunesiPhone">
+	<meta name="twitter:title" content="Lock +">
+	<meta name="twitter:description" content="Design lockscreens online to use on your iPhone">
+	<meta name="twitter:image" content="/twittercard.png">
+
+	<!-- Browser icons -->
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="icon" type="image/png" href="https://lockplus.us/favicon.ico">
+
+	<!-- Polyfill -->
+	<script type="text/javascript" src="js/logic/helpers.js"></script>
+	<script type="text/javascript" src="js/logic/bottomEditMenu/adjustScreen.js"></script>
+	<script type="text/javascript" src="js/libraries/smoothscrollpolyfill.js"></script>
+	<script type="text/javascript">polyfill();</script>
+	<script type="text/javascript" src="js/libraries/vibrant.js"></script>
+	<script type="text/javascript" src="js/libraries/circleprogress.js"></script>
+
+	<!-- Assets -->
+	<!-- <script src="https://lockplus.us/CreatorAssets/images.js?001" async defer></script>
+	 -->
+
+	<script language="JavaScript">
+		var triedToLoadImages = 0;
+		var loadTimerTimeout = null;
+		function loadCreatorImages(){
+			var s=document.getElementsByTagName('script')[0];
+			var sc=document.createElement('script');
+			sc.type='text/javascript';
+			sc.async=true;
+			sc.src='https://lockplus.us/CreatorAssets/images.js?' + Math.random(); 
+			triedToLoadImages += 1;
+			s.parentNode.insertBefore(sc,s);
+			sc.onload = function(){
+				clearTimeout(loadTimerTimeout);
+				triedToLoadImages = 0;
+			}
+			sc.onerror = function(){
+				if(triedToLoadImages < 5){
+					loadTimerTimeout = setTimeout(function(){
+						loadCreatorImages();
+					},1000);
+				}else{
+					alert('failed to load creator image assets server may be down');
+				}
+			}
+		}
+		loadCreatorImages();
+	</script>
+
+	<script>
+		var userTemplates = [];
+		function usertemplates(templates){
+			//location.href = 'js-call:debugThis:templates' + templates;
+			userTemplates = templates.split(',');
+		}
+	</script>
+	
+	<style>
+		.customDiv{
+		    position: absolute;
+		    padding:20px;
+		    white-space: nowrap;
+		}
+		.customDiv::after{
+		    position: absolute;
+		    top:-15px;
+		    left:0;
+		    font-size: 8px;
+		    content: attr(data-title);
+		    text-transform: uppercase;
+
+		}
+		.customDiv div{
+		    position: relative!important;
+		    width:auto!important;
+		    top:0!important;
+		    left:0!important;
+		    display: inline-block;
+		}
+		.customPanel{
+			position: absolute;
+		}
+		.customPanel::after{
+		    position: absolute;
+		    top:-15px;
+		    left:0;
+		    font-size: 6px;
+		    content: attr(data-title);
+		    text-transform: uppercase;
+		}
+		body{
+			margin:0;
+		}
+	</style>
+
+<!---
+
+	Deleted 
+	css/elementPanels.css
+	action_elementpanel.js
+---->
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/fixes.css">
+	<link rel="stylesheet" type="text/css" href="css/elementMenu.css">
+	<link rel="stylesheet" type="text/css" href="css/menu.css?001">
+	<link rel="stylesheet" type="text/css" href="css/bottomMenu.css?001">
+	<link rel="stylesheet" type="text/css" href="css/actionMenu.css">
+	<link rel="stylesheet" type="text/css" href="css/phone.css">
+	<link rel="stylesheet" type="text/css" href="css/powerange.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/slick.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/spectrum.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/stroll.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/tooltips.css">
+	<link rel="stylesheet" type="text/css" href="css/widget.css">
+	<link rel="stylesheet" type="text/css" href="css/loader.css">
+	<link rel="stylesheet" type="text/css" href="css/textGradient.css">
+	<link rel="stylesheet" type="text/css" href="css/gradientWindow.css">
+	<link rel="stylesheet" type="text/css" href="css/jpopup.css">
+	<link rel="stylesheet" type="text/css" href="css/darktheme.css">
+	<link rel="stylesheet" type="text/css" href="css/flipclock.css">
+
+	<link rel="stylesheet" type="text/css" href="css/animation.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/iosmain.min.css?005"> -->
+
+	<!-- Loader -->
+	<div id="themePreview" style="position:absolute;top:0;left:0;z-index: 9999999;"></div>
+	<div class="loading" id="loader" style="display:none;">
+		<div class="loading_object">
+			<div class="loading__ring">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M85.5,42c-0.2-0.8-0.5-1.7-0.8-2.5c-0.3-0.9-0.7-1.6-1-2.3c-0.3-0.7-0.6-1.3-1-1.9c0.3,0.5,0.5,1.1,0.8,1.7  c0.2,0.7,0.6,1.5,0.8,2.3s0.5,1.7,0.8,2.5c0.8,3.5,1.3,7.5,0.8,12c-0.4,4.3-1.8,9-4.2,13.4c-2.4,4.2-5.9,8.2-10.5,11.2  c-1.1,0.7-2.2,1.5-3.4,2c-0.5,0.2-1.2,0.6-1.8,0.8s-1.3,0.5-1.9,0.8c-2.6,1-5.3,1.7-8.1,1.8l-1.1,0.1L53.8,84c-0.7,0-1.4,0-2.1,0  c-1.4-0.1-2.9-0.1-4.2-0.5c-1.4-0.1-2.8-0.6-4.1-0.8c-1.4-0.5-2.7-0.9-3.9-1.5c-1.2-0.6-2.4-1.2-3.7-1.9c-0.6-0.3-1.2-0.7-1.7-1.1  l-0.8-0.6c-0.3-0.1-0.6-0.4-0.8-0.6l-0.8-0.6L31.3,76l-0.2-0.2L31,75.7l-0.1-0.1l0,0l-1.5-1.5c-1.2-1-1.9-2.1-2.7-3.1  c-0.4-0.4-0.7-1.1-1.1-1.7l-1.1-1.7c-0.3-0.6-0.6-1.2-0.9-1.8c-0.2-0.5-0.6-1.2-0.8-1.8c-0.4-1.2-1-2.4-1.2-3.7  c-0.2-0.6-0.4-1.2-0.5-1.9c-0.1-0.6-0.2-1.2-0.3-1.8c-0.3-1.2-0.3-2.4-0.4-3.7c-0.1-1.2,0-2.5,0.1-3.7c0.2-1.2,0.3-2.4,0.6-3.5  c0.1-0.6,0.3-1.1,0.4-1.7l0.1-0.8l0.3-0.8c1.5-4.3,3.8-8,6.5-11c0.8-0.8,1.4-1.5,2.1-2.1c0.9-0.9,1.4-1.3,2.2-1.8  c1.4-1.2,2.9-2,4.3-2.8c2.8-1.5,5.5-2.3,7.7-2.8s4-0.7,5.2-0.6c0.6-0.1,1.1,0,1.4,0s0.4,0,0.4,0h0.1c2.7,0.1,5-2.2,5-5  c0.1-2.7-2.2-5-5-5c-0.2,0-0.2,0-0.3,0c0,0-0.2,0.1-0.6,0.1c-0.4,0-1,0-1.8,0.1c-1.6,0.1-4,0.4-6.9,1.2c-2.9,0.8-6.4,2-9.9,4.1  c-1.8,1-3.6,2.3-5.4,3.8C26,21.4,25,22.2,24.4,23c-0.2,0.2-0.4,0.4-0.6,0.6c-0.2,0.2-0.5,0.4-0.6,0.7c-0.5,0.4-0.8,0.9-1.3,1.4  c-3.2,3.9-5.9,8.8-7.5,14.3l-0.3,1l-0.2,1.1c-0.1,0.7-0.3,1.4-0.4,2.1c-0.3,1.5-0.4,2.9-0.5,4.5c0,1.5-0.1,3,0.1,4.5  c0.2,1.5,0.2,3,0.6,4.6c0.1,0.7,0.3,1.5,0.4,2.3c0.2,0.8,0.5,1.5,0.7,2.3c0.4,1.6,1.1,3,1.7,4.4c0.3,0.7,0.7,1.4,1.1,2.1  c0.4,0.8,0.8,1.4,1.2,2.1c0.5,0.7,0.9,1.4,1.4,2s0.9,1.3,1.5,1.9c1.1,1.3,2.2,2.7,3.3,3.5l1.7,1.6c0,0,0.1,0.1,0.1,0.1c0,0,0,0,0,0  c0,0,0,0,0,0l0.1,0.1l0.1,0.1h0.2l0.5,0.4l1,0.7c0.4,0.2,0.6,0.5,1,0.7l1.1,0.6c0.8,0.4,1.4,0.9,2.1,1.2c1.4,0.7,2.9,1.5,4.4,2  c1.5,0.7,3.1,1,4.6,1.5c1.5,0.3,3.1,0.7,4.7,0.8c1.6,0.2,3.1,0.2,4.7,0.2c0.8,0,1.6-0.1,2.4-0.1l1.2-0.1l1.1-0.1  c3.1-0.4,6.1-1.3,8.9-2.4c0.8-0.3,1.4-0.6,2.1-0.9s1.3-0.7,2-1.1c1.3-0.7,2.6-1.7,3.7-2.5c0.5-0.4,1-0.9,1.6-1.3l0.8-0.6l0.2-0.2  c0,0,0.1-0.1,0.1-0.1c0.1-0.1,0,0,0,0v0.1l0.1-0.1l0.4-0.4c0.5-0.5,1-1,1.5-1.5c0.3-0.3,0.5-0.5,0.8-0.8l0.7-0.8  c0.9-1.1,1.8-2.2,2.5-3.3c0.4-0.6,0.7-1.1,1.1-1.7c0.3-0.7,0.6-1.2,0.9-1.8c2.4-4.9,3.5-9.8,3.7-14.4C87.3,49.7,86.6,45.5,85.5,42z"></path></svg>
+			</div>
+			<div class="loading__ring">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M85.5,42c-0.2-0.8-0.5-1.7-0.8-2.5c-0.3-0.9-0.7-1.6-1-2.3c-0.3-0.7-0.6-1.3-1-1.9c0.3,0.5,0.5,1.1,0.8,1.7  c0.2,0.7,0.6,1.5,0.8,2.3s0.5,1.7,0.8,2.5c0.8,3.5,1.3,7.5,0.8,12c-0.4,4.3-1.8,9-4.2,13.4c-2.4,4.2-5.9,8.2-10.5,11.2  c-1.1,0.7-2.2,1.5-3.4,2c-0.5,0.2-1.2,0.6-1.8,0.8s-1.3,0.5-1.9,0.8c-2.6,1-5.3,1.7-8.1,1.8l-1.1,0.1L53.8,84c-0.7,0-1.4,0-2.1,0  c-1.4-0.1-2.9-0.1-4.2-0.5c-1.4-0.1-2.8-0.6-4.1-0.8c-1.4-0.5-2.7-0.9-3.9-1.5c-1.2-0.6-2.4-1.2-3.7-1.9c-0.6-0.3-1.2-0.7-1.7-1.1  l-0.8-0.6c-0.3-0.1-0.6-0.4-0.8-0.6l-0.8-0.6L31.3,76l-0.2-0.2L31,75.7l-0.1-0.1l0,0l-1.5-1.5c-1.2-1-1.9-2.1-2.7-3.1  c-0.4-0.4-0.7-1.1-1.1-1.7l-1.1-1.7c-0.3-0.6-0.6-1.2-0.9-1.8c-0.2-0.5-0.6-1.2-0.8-1.8c-0.4-1.2-1-2.4-1.2-3.7  c-0.2-0.6-0.4-1.2-0.5-1.9c-0.1-0.6-0.2-1.2-0.3-1.8c-0.3-1.2-0.3-2.4-0.4-3.7c-0.1-1.2,0-2.5,0.1-3.7c0.2-1.2,0.3-2.4,0.6-3.5  c0.1-0.6,0.3-1.1,0.4-1.7l0.1-0.8l0.3-0.8c1.5-4.3,3.8-8,6.5-11c0.8-0.8,1.4-1.5,2.1-2.1c0.9-0.9,1.4-1.3,2.2-1.8  c1.4-1.2,2.9-2,4.3-2.8c2.8-1.5,5.5-2.3,7.7-2.8s4-0.7,5.2-0.6c0.6-0.1,1.1,0,1.4,0s0.4,0,0.4,0h0.1c2.7,0.1,5-2.2,5-5  c0.1-2.7-2.2-5-5-5c-0.2,0-0.2,0-0.3,0c0,0-0.2,0.1-0.6,0.1c-0.4,0-1,0-1.8,0.1c-1.6,0.1-4,0.4-6.9,1.2c-2.9,0.8-6.4,2-9.9,4.1  c-1.8,1-3.6,2.3-5.4,3.8C26,21.4,25,22.2,24.4,23c-0.2,0.2-0.4,0.4-0.6,0.6c-0.2,0.2-0.5,0.4-0.6,0.7c-0.5,0.4-0.8,0.9-1.3,1.4  c-3.2,3.9-5.9,8.8-7.5,14.3l-0.3,1l-0.2,1.1c-0.1,0.7-0.3,1.4-0.4,2.1c-0.3,1.5-0.4,2.9-0.5,4.5c0,1.5-0.1,3,0.1,4.5  c0.2,1.5,0.2,3,0.6,4.6c0.1,0.7,0.3,1.5,0.4,2.3c0.2,0.8,0.5,1.5,0.7,2.3c0.4,1.6,1.1,3,1.7,4.4c0.3,0.7,0.7,1.4,1.1,2.1  c0.4,0.8,0.8,1.4,1.2,2.1c0.5,0.7,0.9,1.4,1.4,2s0.9,1.3,1.5,1.9c1.1,1.3,2.2,2.7,3.3,3.5l1.7,1.6c0,0,0.1,0.1,0.1,0.1c0,0,0,0,0,0  c0,0,0,0,0,0l0.1,0.1l0.1,0.1h0.2l0.5,0.4l1,0.7c0.4,0.2,0.6,0.5,1,0.7l1.1,0.6c0.8,0.4,1.4,0.9,2.1,1.2c1.4,0.7,2.9,1.5,4.4,2  c1.5,0.7,3.1,1,4.6,1.5c1.5,0.3,3.1,0.7,4.7,0.8c1.6,0.2,3.1,0.2,4.7,0.2c0.8,0,1.6-0.1,2.4-0.1l1.2-0.1l1.1-0.1  c3.1-0.4,6.1-1.3,8.9-2.4c0.8-0.3,1.4-0.6,2.1-0.9s1.3-0.7,2-1.1c1.3-0.7,2.6-1.7,3.7-2.5c0.5-0.4,1-0.9,1.6-1.3l0.8-0.6l0.2-0.2  c0,0,0.1-0.1,0.1-0.1c0.1-0.1,0,0,0,0v0.1l0.1-0.1l0.4-0.4c0.5-0.5,1-1,1.5-1.5c0.3-0.3,0.5-0.5,0.8-0.8l0.7-0.8  c0.9-1.1,1.8-2.2,2.5-3.3c0.4-0.6,0.7-1.1,1.1-1.7c0.3-0.7,0.6-1.2,0.9-1.8c2.4-4.9,3.5-9.8,3.7-14.4C87.3,49.7,86.6,45.5,85.5,42z"></path></svg>
+			</div>
+		</div>
+	</div>
+</head>
+
+<body>
+
+	<div class="colorPickerHolder" id="colorPickerHolder"></div>
+
+	<!-- Main container -->
+	<div class="container" id="container">
+		<!-- Main phone must only contain items needed in finished project -->
+		<div class="phone">
+			<div class="screen" id="screen">
+				<img class='svg' />
+				<div id="screenElements"></div>
+				<div id="overlay" class="screenoverlay"></div>
+				<img width="320px" height="568px" id='wallpaper' style='width:320px; height:568px; pointer-events:none; display:none;' />
+				<canvas width="320px" height="568px" id='blurcanvas' class='blur canvas'></canvas>
+				<img width="100px" height="177.5px" id='miniWallpaper' style='width:150px; height:266.25px; pointer-events:none; display:none; position:absolute; top:0;' />
+				<div id="X">iPhone X</div>
+				<canvas width="150px" height="266.25px" id='miniBlurCanvas' class='miniBlur canvas'></canvas>
+			</div>
+		</div>
+		<!-- Grid placeholder -->
+		<div class="grids" id="grids"></div>
+		<div class="webOptions" id="webOptions">
+			<div class="topbtn" id="iPhone">iPhone</div>
+			<div class="topbtn" id="iPhoneX">iPhoneX</div>
+		</div>
+
+		<!-- Font list placeholder -->
+		<div id="font" style="display:none;">
+			<div id="fontMenu">
+				<div id="fontButtons"></div>
+			</div>
+			<ul id="fList" class="font" style="cursor:default;"></ul>
+			<div id="fontShortcuts"></div>
+		</div>
+	</div>
+	<!-- Popup when user uploads wallpaper -->
+	<div id="wallSelector" style="display:none;">
+		<span>Pick your wallpaper size</span>
+		<li onclick="action.chooseWallSize('i5')" title="640x1136">i5</li>
+		<li onclick="action.chooseWallSize('i6')" title="750x1334">i6</li>
+		<li onclick="action.chooseWallSize('6Plus')" title="1080x1920">6+</li>
+	</div>
+	<!-- Canvas to show blur -->
+	<div id="previewCanvas" style="opacity:0;"></div>
+	<!-- Weather icons -->
+	<div class="iconList" style="display:none;"></div>
+	<!-- Loading progress -->
+	<div class="loader">Loading...</div>
+	<!-- Form filled and sent with submit-->
+	<form action="php/exportiOS.php" method="POST" id="myform">
+		<input type="hidden" name="fileName" id="fileName" />
+		<input type="hidden" name="email" id="email" />
+		<input type="hidden" name="devname" id="devname" />
+		<input type="hidden" name="Tpreview" id="Tpreview" />
+		<input type="hidden" name="Twallpaper" id="Twallpaper" />
+		<input type="hidden" name="Toverlay" id="Toverlay" />
+		<input type="hidden" name="Ticon" id="Ticon" />
+		<input type="hidden" name="Telements" id="Telements" />
+		<input type="hidden" name="editing" id="editing" value="NO" />
+		<input style="display:none;" type="submit" value="Submit">
+	</form>
+	<!-- Version and attribution -->
+	<footer>
+		<!-- <a id="version" href="http://lockplus.info/forum/index/topic/lockplus-us/">Version 1.3.6</a>
+		<span id="copyright">© Copyright 2017 <a href="http://JunesiPhone.com">JunesiPhone</a> All rights reserved </span>
+		</br>
+		<div id="logo"><img src="css/logo.png" width="40" /></div> -->
+	</footer>
+
+	<!-- Background input button kinda hacky -->
+	<input type='file' class="input" id='bgInput' name='bg'>
+
+	<!-- Place to preload fonts -->
+	<div class="font_preload" style="position:absolute;top:-600px;left:0;opacity: 1"></div>
+
+
+	<script type="text/javascript" src="js/main/userFont.js"></script>
+
+	<!-- Defines website type -->
+	<script type="text/javascript">
+	var isInEditMode = false,
+			editSB = false,
+			isWidget = false,
+			isMobile = true,
+			isios2 = false,
+			wallpaperSaved = false;
+
+	function setIsInApp(){
+		isInApp = true;
+	}
+	function getIsInApp(){
+		try{
+			return isInApp;
+		}catch(err){
+			return false;
+		}
+	}
+
+
+
+
+	function themeName(name) {
+		localStorage.themeName = name;
+	}
+
+	var loadTheme = function (thedict, order) {
+		try {
+			var dict = thedict;
+			//var elOrder = order.split(' ');
+			var elOrder = order;
+			var placed = {};
+			action.savedElements.overlay = dict.Overlay;
+			if (dict.Widget) {
+				action.savedElements.widget = dict.Widget;
+			}
+			if (dict.Elements) {
+				if(elOrder.length > 0){
+					for (var i = 0; i < elOrder.length; i++) {
+						placed[elOrder[i]] = dict.Elements[elOrder[i]];
+						if(!placed[elOrder[i]]){
+							//alert('err');
+						}
+					}
+					action.savedElements.placedElements = placed;
+				}else{
+					action.savedElements.placedElements = dict.Elements;
+				}
+			} else {
+				action.savedElements.placedElements = '';
+			}
+			if (dict.IconName) {
+				action.savedElements.iconName = dict.IconName;
+			} else {
+				action.savedElements.iconName = 'simply';
+			}
+			localStorage.setItem('placedElements', JSON.stringify(action.savedElements));
+			dict = null;
+			placed = null;
+			window.location = location.href;
+		} catch (err) {
+			//alert("LBJS Error " + err);
+		}
+	};
+
+	function loadingTheme(dict, order) {
+		var elOrder = order.split(' ');
+		var values = JSON.parse(dict);
+		loadTheme(values, elOrder);
+		return true;
+	}	
+
+	</script>
+
+    <script type="text/javascript" src="js/logic/wallpaperColor.js"></script>
+	<script type="text/javascript" src="js/logic/menus/widgetMenu.js"></script>
+
+	<script src="js/elementAnimations.js"></script>
+
+	<!--OTA Updates-->
+	<script src="js/libraries/jquery-2.1.4.min.js"></script>
+	<script src="js/libraries/slick.min.js"></script>
+	<script src="js/libraries/jquery.mousewheel.min.js"></script>
+	<script src="js/libraries/jquery-ui.js"></script>
+	<script src="js/libraries/patch_draggable.js"></script>
+	<script src="js/libraries/spectrum.js"></script>
+	<script src="js/logic/colorPicker.js"></script>
+	<script src="js/libraries/prefixfree.min.js"></script>
+	<script src="js/libraries/StackBlur.js"></script>
+	<script src="js/libraries/html2canvas.js"></script>
+	<script src="js/libraries/UITouchPunch.js"></script>
+	<!-- <script src="js/libraries/stroll.js"></script> -->
+	<script src="js/libraries/fastclick.js"></script>
+	<script src="js/libraries/blob.js"></script>
+	<script src="js/libraries/jpopup.js"></script>
+
+	<script src="js/logic/creator.js"></script>
+	<!-- <script src="js/libraries/dragSelect.js"></script> -->
+
+	<script src="js/logic/creatorOptions.js?001"></script>
+	<script src="js/main/userStyles.js?002"></script>
+	<script src="js/main/clock.js"></script>
+	<script src="js/main/objects.js"></script>
+
+	<script src="js/logic/main.js"></script>
+
+	<!-- <script src="js/logic/multiSelect.js"></script> -->
+	<script src="js/logic/events.js"></script>
+	<script src="js/logic/gradientpresets.js"></script>
+	<script src="js/logic/gradients.js"></script>
+	
+	<!-- <script src="js/logic/action_weight.js"></script> -->
+	<script src="js/logic/action_undoredo.js"></script>
+	<script src="js/logic/action_cleartheme.js"></script>
+	<script src="js/logic/svgKnockout.js"></script>
+
+	<script src="js/logic/bottomEditMenu/customDivs.js"></script>
+	<script src="js/logic/bottomEditMenu/customPanel.js"></script>
+	<!-- <script src="js/logic/action_createLi.js"></script> -->
+	<script src="js/logic/batterypie.js"></script>
+	<script src="js/libraries/flipclock.js"></script>
+	<script src="js/logic/action_font.js"></script>
+	<script src="js/logic/action_size.js"></script>
+	<script src="js/logic/action_setcss.js"></script>
+	<script src="js/logic/bottomEditMenu/iconMenu.js?001"></script>
+	<script src="js/logic/action_transform.js"></script>
+	<script src="js/logic/action_shadow.js"></script>
+	<script src="js/logic/action_text.js"></script>
+	<script src="js/logic/action_input.js"></script>
+	<script src="js/logic/action_position.js"></script>
+	<script src="js/logic/action_selection.js"></script>
+	<script src="js/logic/bundleList.js"></script>
+	<script src="js/logic/action_loadsaved.js"></script>
+	<script src="js/logic/action_draggable.js"></script>
+	<script src="js/logic/action_addremove.js?001"></script>
+	<script src="js/logic/action_styles.js"></script>
+	<script src="js/logic/action_savestorage.js"></script>
+	<!-- <script src="js/logic/action_slickcarousel.js"></script> -->
+	<script src="js/logic/action_background.js"></script>
+	<script src="js/logic/action_addfont.js"></script>
+	<script src="js/logic/app.js"></script>
+	<!-- <script src="js/logic/menuActions.js?002"></script> -->
+	<script src="js/libraries/powerange.js"></script>
+
+
+	<!-- <script src="js/logic/ElementMenu/elementmenu.js?001"></script> -->
+	<script src="js/logic/menus/menuLayout.js?001"></script>
+	<script src="js/logic/menus/elementMenu.js?001"></script>
+	<script src="js/logic/menus/draggableMenu.js?001"></script>
+	<script src="js/logic/menus/mainMenu.js?001"></script>
+	<script src="js/logic/menus/placedMenu.js?001"></script>
+	<script src="js/logic/menus/rssMenu.js?001"></script>
+	<script src="js/logic/gridMaker.js"></script>
+	<script src="js/logic/menus/alignPlaceholders.js"></script>
+	<script src="js/logic/menus/addFontMenu.js?001"></script>
+	<script src="js/logic/menus/actionMenu.js"></script>
+
+	<script src="js/logic/menuButton.js?001"></script>
+
+	<script src="js/logic/bottomEditMenu/reflectionMenu.js"></script>
+	<script src="js/logic/bottomEditMenu/shadowMenu.js"></script>
+	
+	<script src="js/logic/bottomEditMenu/rangeButtons.js"></script>
+	<script src="js/logic/bottomEditMenu/button.js"></script>
+	<script src="js/logic/bottomEditMenu/positionInput.js"></script>
+	<script src="js/logic/bottomEditMenu/triButtons.js"></script>
+	<script src="js/logic/bottomEditMenu/copystyles.js"></script>
+	<script src="js/logic/bottomEditMenu/openAnimations.js"></script>
+	<script src="js/logic/bottomEditMenu/customCSS.js"></script>
+	<script src="js/logic/bottomEditMenu/buttons.js"></script>
+	<script src="js/logic/bottomEditMenu/layout.js"></script>
+	<script src="js/logic/bottomEditMenu/init.js"></script>
+	
+	<script src="js/logic/specialSizing.js"></script>
+
+</body>
+</html>

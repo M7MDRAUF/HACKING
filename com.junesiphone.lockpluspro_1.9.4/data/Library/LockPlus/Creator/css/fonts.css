@@ -1,0 +1,351 @@
+.entypoF{
+    font-family: 'entypo'!important;
+}
+.mat2F{
+    font-family: 'mat21'!important;
+}
+.mat3F{
+    font-family: 'mat31'!important;
+}
+.mat4F{
+    font-family: 'mat41'!important;
+}
+.mat5F{
+    font-family: 'mat51'!important;
+}
+.mashup{
+    font-family: 'mashup'!important;
+}
+@font-face{
+    font-family: 'entypo1';
+    src:url('file:///var/mobile/Documents/lockplusfonts/entypo.otf');
+}
+@font-face{
+    font-family: 'mat21';
+    src:url('file:///var/mobile/Documents/lockplusfonts/mat2.otf');
+}
+@font-face{
+    font-family: 'mat31';
+    src:url('file:///var/mobile/Documents/lockplusfonts/mat3.otf');
+}
+@font-face{
+    font-family: 'mat41';
+    src:url('file:///var/mobile/Documents/lockplusfonts/mat4.otf');
+}
+@font-face{
+    font-family: 'mat51';
+    src:url('file:///var/mobile/Documents/lockplusfonts/mat5.otf');
+}
+@font-face{
+    font-family: 'mashup';
+    src:url('file:///var/mobile/Documents/lockplusfonts/Mashup.otf');
+}
+
+/* font holder */
+#font {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    text-transform: capitalize;
+    z-index: 12;
+    background-color: #343434;
+    border-radius: 2px;
+}
+#font ul {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    width: calc(100vw - 45px - 45px);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling:touch;
+    list-style: none;
+}
+.font li {
+    position: relative;
+    padding: 10px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    z-index: 2;
+    /*border-radius: 2px;*/
+    /*margin-top: 5px;*/
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 1px solid transparent;
+    margin-bottom: 5px;
+    line-height: 30px;
+}
+.fontname{
+    font-family: helvetica!important;
+    font-size: 12px;
+}
+.font li:first-child{
+    margin-top:60px;
+}
+.font li:nth-child(odd) {
+    /*background: #101010;*/
+}
+#fontMenu{
+    position: absolute;
+    top:55px;
+    width: 80vh;
+    height: 40px;
+    color:white;
+    left:-80vh;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    -webkit-transform:rotate(-90deg);
+    -webkit-transform-origin: top right;
+    -webkit-backdrop-filter:blur(10px);
+    text-align: center;
+    /*background-color: rgba(255,255,255,0.3);*/
+
+    /*background-color:red;*/
+    /*background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 10%,rgba(255,255,255,0.3) 11%,rgba(255,255,255,0.3) 100%);*/
+    z-index: 9;
+}
+#fontButtons{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*left:50%;
+    -webkit-transform:translate(-50%);*/
+    /*background-color:blue;*/
+    /*overflow: scroll;*/
+}
+/*#fontButtons:last-child{
+    margin-bottom: 30px;
+}*/
+.fontMenuButtons{
+    position: relative;
+    background-color: black;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    float:left;
+    white-space: nowrap;
+    margin-right: 10px;
+    text-align: center;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-right:10px;
+    padding-left:10px;
+    /*position: absolute;
+    width: 90%;
+    height: 50px;
+    color:white;
+    text-align: center;
+    font-size: 12px;
+    background-color: red;
+    height: 45px;
+    line-height: 20px;
+    left:50%;
+    -webkit-transform:translate(-50%);
+    line-height: 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    z-index: 9;
+    bottom:0;
+    -webkit-backdrop-filter:blur(10px);
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 46%,rgba(255,255,255,0.3) 47%,rgba(255,255,255,0.3) 100%);*/
+}
+.used{
+    /*margin-top:20px;*/
+}
+#fontPreviewWindow{
+    position: absolute;
+    left:50%;
+    top:50%;
+    -webkit-transform:translate(-50%, -50%);
+    width: 320px;
+    height: 300px;
+    background-color: black;
+    border:1px solid rgba(255,255,255,0.5);
+    z-index: 99;
+    border-radius: 5px;
+    color:white;
+    overflow: scroll;
+}
+#fontPreviewWindow:after{
+    position: absolute;
+    content: attr(title);
+    top:10px;
+    left:20px;
+    font-size: 12px;
+    font-family: 'helvetica';
+}
+#fontPreviewText{
+    position: absolute;
+    left:50%;
+    -webkit-transform:translate(-50%);
+    bottom:60px;
+    width: 90%;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 5px;
+    padding-top:10px;
+    padding-bottom:10px;
+    /*padding:10px;*/
+    background-color:rgba(157, 157, 157, 0.5);
+}
+#fontPreviewText:after{
+    content: "Preview:";
+    position: absolute;
+    top:-20px;
+    left:0;
+    font-size: 12px;
+    color:white;
+    font-family: 'helvetica';
+}
+#fontPreviewABC{
+    position: absolute;
+    top:40px;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+#fontPreviewApplyButton, #fontPreviewCloseButton{
+    position: absolute;
+    bottom:15px;
+    background-color: white;
+    color:black;
+    padding:5px;
+    border-radius: 5px;
+}
+#fontPreviewApplyButton{
+    right:25px;
+}
+#fontPreviewCloseButton{
+    left:25px;
+}
+/* shortcuts menu */
+#fontShortcuts{
+    position: absolute;
+    top:50%;
+    -webkit-transform:translate(0, -50%);
+    right:0;
+    width: 40px;
+    z-index: 99999;
+    text-align: center;
+    background-color: #343434;
+    color:white;
+    background-color: black!important;
+    /*padding-top:10px;
+    padding-bottom: 10px;*/
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+#fontShortcuts div{
+    height: 25px;
+    line-height: 25px;
+}
+
+
+/* symbol font preview pane */
+#symbolFontList{
+    position: absolute;
+    margin:0;
+    padding:0;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    -webkit-backdrop-filter:blur(10px);
+    z-index: 9999;
+}
+#symbolFontList div{
+    text-align: center;
+    display: inline-block;
+    color:white;
+    font-size: 25px;
+}
+#symbolCloseDiv, #symbolSetDiv{
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color:black;
+    bottom:40px;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.7);
+}
+#symbolCloseDiv{
+    bottom:40px;
+    left:20px;
+}
+#symbolSetDiv{
+    bottom: 40px;
+    right:20px;
+}
+
+
+/* User add fonts */
+#userFontHolder{
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%,-50%);
+    z-index: 99;
+    width: 70%;
+    height: 50%;
+    overflow: scroll;
+    -webkit-box-shadow: 0 0 200px rgba(0, 0, 0, 0.8);
+}
+#userAddedFontsCloser{
+    position: absolute;
+    top:5px;
+    right:5px;
+    width: 20px;
+    height: 20px;
+    background-color: #343434;
+    color:white;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 20px;
+}
+#userFontHolder li{
+    list-style-type: none;
+    text-align: center;
+    background-color: #343434;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color:white;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    text-transform: capitalize;
+}
+#userFontHolder li:first-child{
+    padding-bottom:20px;
+    background-color: transparent;
+}
+#fontInstructions{
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    font-size: 12px;
+}
+
+#userFontHolder::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+#userFontHolder::-webkit-scrollbar-thumb {
+    background-color: black;
+    -webkit-background-clip: padding-box;
+    border-radius: 5px;
+}
+#userFontHolder::-webkit-scrollbar {
+    width: 0px;
+    margin-left: 0px;
+}

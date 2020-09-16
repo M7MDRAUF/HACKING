@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <style>
+  .loader {
+    position: absolute;
+    bottom:140px;
+    left: calc(50% - 32px);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    perspective: 800px;
+  }
+  .inner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;  
+  }
+  .inner.one {
+    left: 0%;
+    top: 0%;
+    -webkit-animation: ringone 2s linear infinite;
+    border-bottom: 3px solid #89d96b;
+  }
+  .inner.two {
+    right: 0%;
+    top: 0%;
+    -webkit-animation: ringtwo 2s linear infinite;
+    border-right: 3px solid #89d96b;
+  }
+  .inner.three {
+    right: 0%;
+    bottom: 0%;
+    -webkit-animation: ringthree 2s linear infinite;
+    border-top: 3px solid #89d96b;
+  }
+  @-webkit-keyframes ringone {
+    0% {
+      -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+    100% {
+      -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+  }
+  @-webkit-keyframes ringtwo {
+    0% {
+      -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+    100% {
+      -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+  }
+  @-webkit-keyframes ringthree {
+    0% {
+      -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+    100% {
+      -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+  }
+  .percent{
+    position: absolute;
+    top: calc(100% - 32px);
+    color: #89d96b;
+    width: 100%;
+    text-align: center;
+    font-size: 9px;
+    font-family: helvetica;
+  }
+  </style>
+</head>
+
+<body>
+
+  <div class="loader">
+    <div class="percent">10%</div>
+    <div class="inner one"></div>
+    <div class="inner two"></div>
+    <div class="inner three"></div>
+  </div>
+
+  <script>
+      function getBatteryInfo(){
+          document.querySelector('.percent').innerHTML = window.parent.injectedSystem.battery + "%";
+          setTimeout(getBatteryInfo, 10000);
+      }
+      getBatteryInfo();
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<html id="html">
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1 maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
+    <script src="js/prefixfree.min.js"></script>
+    <script src="../Creator/js/libraries/jquery-2.1.4.min.js"></script>
+    <script src="js/coloricon.js"></script>
+    <!-- <script src="extras/hue/js/libs/jshue.js"></script>
+    <script src="js/hue.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="style.css?001">
+    <div id="menuiPad" class="iPadDetect" style="display:none;"></div>
+    <div id="overlayBlurrer"></div>
+    <style>
+        *{
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body id="body">
+    <iframe id="overlayMaker" scrolling="0" src="" frameBorder="0"></iframe>
+    <div id="optionsContainer" style="display: none;">
+        <div id="optionsMenu">
+            <div class='optionsButtons'>
+                <!-- <div title="tetris">Tetris</div> -->
+                <div title="todo">Todo List</div>
+                <div title='stopwatch'>Stop Watch</div>
+                <!-- <div title='crappybird'>CrappyBird</div>
+                <div title='towedefense'>TowerDefense</div>
+                <div title='dokaphoto'>Photo Editor</div> -->
+                <div title='savewall'>Save Wall to Photos</div>
+                <div title='setavatar'>Set Avatar Image</div>
+                <div title='overlay'>Make Overlay</div>
+                <div title='respring'>Respring</div>
+                <div title='huelights'>Hue Lights</div>
+                <div title='close'>Close Menu</div>
+            </div>
+        </div>
+    </div>
+    <div id="mainContainer" class="container">
+        <div id="screenElements"></div>
+    </div>
+    <script src="js/globals.js"></script>
+    <script src="js/defaults.js"></script>
+    <script src="js/webview.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/updateFunctions.js"></script>
+    <script src="js/prototypes.js"></script>
+    <script src="js/flipclock.js"></script>
+    <script src="js/widgetFunctions.js"></script>
+    <script src="js/elementAnimations.js"></script>
+    <script src="js/sizing.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/setup.js"></script>
+    <script src="js/elements.js"></script>
+    <script src="js/mainLoop.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/tap.js"></script>
+    <script src="js/loaded.js"></script>
+    <script src="js/menu.js"></script>
+
+    <script>
+        //Prevent iOS moving page
+        window.onscroll = function(ev) {
+            if (window.scrollY > 0 || window.scrollX > 0) {
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+            }
+        };
+        
+        if(window.location.host){
+            var url = window.location.host;
+                url = url.split(':');
+                if(url.length > 0){
+                    if(url[0] === '127.0.0.1'){
+                        document.body.style.backgroundColor = 'black';
+                    }
+                }
+        }
+    </script>
+    <!-- <script src="js/colorify.js"></script> -->
+</body>
+</html>

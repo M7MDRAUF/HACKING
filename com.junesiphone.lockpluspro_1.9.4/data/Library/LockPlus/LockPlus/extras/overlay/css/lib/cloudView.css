@@ -1,0 +1,68 @@
+.cloudView{
+	/*background-color: rgba(0,0,0,0.6);
+	-webkit-backdrop-filter:blur(10px);*/
+	position: relative;
+/*	bottom: 10vh;*/
+	right:0;
+	width: 100%;
+    height:calc(100% - 45px);
+    top:26px;
+	/* height: auto;
+	max-height: 35vh; */
+	/* background-color: pink; */
+	overflow: scroll;
+	/* -webkit-overflow-scrolling: touch; */
+    -webkit-transform:translateZ(0);
+    text-align: center;
+	padding-bottom: 10px;
+	border:1px solid transparent;
+	/*box-sizing: border-box;*/
+	/*overflow: scroll;*/
+}
+.cloudButtonContainer{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    /* top:50%;
+    left:50%;
+	-webkit-transform:translate(-50%, -50%); */
+	margin-top:5px;
+	/* background-color: red; */
+	/* margin-bottom:40px; */
+	padding-bottom:30px;
+}
+.cloudButton{
+	position: relative;
+	/*display: table-cell;*/
+	width: auto;
+	margin:5px;
+	margin-top:5px;
+	margin-bottom:5px;
+	vertical-align: middle;
+	padding-left:10px;
+	padding-right:10px;
+	border-radius: 5px;
+	color:white;
+	text-align: center;
+	height: auto;
+	line-height:30px;
+	font-weight: 400;
+    text-transform: capitalize;
+    background-color:black;
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+    display: inline-block;
+    
+}
+
+.cloudView::-webkit-scrollbar{
+    width: 0px;
+    margin-left: 0px;
+    border-radius: 0px!important;
+    background-color: transparent!important;
+}
+.cloudView::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+.cloudView::-webkit-scrollbar-thumb{
+    display: none;
+}

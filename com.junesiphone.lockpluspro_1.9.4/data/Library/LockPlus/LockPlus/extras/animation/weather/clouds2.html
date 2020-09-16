@@ -1,0 +1,163 @@
+<html>
+<head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+</head>
+<body>
+    <script type="text/javascript" src="js/THREE-r84.js"></script>
+    <script type="text/javascript" src="js/SPE.min.js"></script>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        .ray{
+            position: absolute;
+            width:100%;
+            height: 100%;
+            background-image: url('img/ray1.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: -1;
+            opacity: 0;
+        }
+        canvas{
+            z-index: 2;
+        }
+    </style>
+    <div class="ray" id="ray"></div>
+    <script type="text/javascript">
+        var scene, camera, renderer, stats, stats2, clock, emitter, particleGroup,
+        testing = false,
+        statsLoaded = false,
+        ray = document.getElementById('ray'),
+        opacity = 0;
+
+        /* testing */
+        function loadJS(url, implementationCode, location){
+            var scriptTag = document.createElement('script');
+            scriptTag.src = url;
+            scriptTag.onload = implementationCode;
+            scriptTag.onreadystatechange = implementationCode;
+            location.appendChild(scriptTag);
+        }
+        function createFPS(){
+            stats = new Stats();
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.top = '65px';
+            stats.domElement.style.left = '30px';
+            document.body.appendChild(stats.domElement);
+            document.body.style.backgroundColor = "black";
+            statsLoaded = true;
+        }
+        function loadStatsJS(){
+            loadJS('js/Stats.min.js', createFPS, document.body);
+        }
+        /* testing */
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+            camera.position.y = -51;
+            camera.position.x = -10;
+            renderer = new THREE.WebGLRenderer({
+                alpha:true
+            });
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            renderer.setClearColor( 0x000000, 0);
+            clock = new THREE.Clock();
+            if(testing){
+                loadStatsJS();
+            }
+            scene.fog = new THREE.Fog( renderer.getClearColor(), 5, 0 );
+            document.body.appendChild( renderer.domElement );
+        }
+        function fadeRay(forwards) {
+            if(forwards){
+                if (opacity < 1) {
+                  opacity += .1;
+                  setTimeout(function(){fadeRay(true)}, 500);
+               }else{
+                   setTimeout(fadeRay, 4000); 
+               }
+            }else{
+                if (opacity > 0){
+                    opacity -= .1;
+                    setTimeout(fadeRay, 500);
+                }
+            }
+           ray.style.opacity = opacity;
+        }
+        function initParticles() {
+            particleGroup = new SPE.Group({
+                texture: {
+                    value: new THREE.TextureLoader().load('img/cloud.png')
+                },
+                blending: THREE.NormalBlending,
+                fog: true,
+                maxParticleCount: 100
+            });
+            /*
+                Clouds mostly stay at the top
+            */
+            emitter = new SPE.Emitter({
+                particleCount: 100,
+                maxAge: {
+                    value: 5,
+                },
+                position: {
+                    value: new THREE.Vector3( 0, -15, -50 ),
+                    spread: new THREE.Vector3( 100, 10, 0 )
+                },
+                velocity: {
+                    value: new THREE.Vector3( 1.5, 0, 0 )
+                },
+                wiggle: {
+                    spread: 1
+                },
+                size: {
+                    value: 75,
+                    spread: 50
+                },
+                opacity: {
+                    value: [ 0, 0.1, 0.2, 0 ]
+                },
+                color: {
+                    value: new THREE.Color( 0.8, 0.8, 0.8 ),
+                    spread: new THREE.Color( 0.1, 0.1, 0.1 )
+                },
+                angle: {
+                    value: [ 0, Math.PI * 0.125 ]
+                }
+            });
+
+            particleGroup.addEmitter( emitter );
+            scene.add( particleGroup.mesh );
+        }
+        function animate() {
+            requestAnimationFrame( animate );
+            render( clock.getDelta() );
+            if(testing && statsLoaded){
+                stats.update();
+            }
+
+            var showRay = Math.floor(Math.random() * 100) + 1;
+            //console.log(ray.style.opacity);
+            if(showRay == 100 && ray.style.opacity <= 0){
+                console.log('yes');
+                fadeRay(true);
+            }
+            //console.log(Math.floor(Math.random() * 100) + 1);
+            emitter.size.value = Math.floor(Math.random() * 75) + 30;
+        }
+        function render( dt ) {
+            particleGroup.tick( dt );
+            renderer.render( scene, camera );
+        }
+    window.addEventListener('DOMContentLoaded', function(){
+        init();
+        initParticles();
+        setTimeout(animate, 0);
+    }, false);
+    </script>
+</body>
+</html>

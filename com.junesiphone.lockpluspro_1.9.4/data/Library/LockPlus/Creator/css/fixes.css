@@ -1,0 +1,55 @@
+@media only screen and (max-device-width: 375px) {
+    #leftSelector {
+        width: 11px;
+    }
+    #leftSelector:after {
+        left: -355px;
+        font-size: 10px;
+    }
+    #screenCover {
+        top: 33px;
+        left: 27px;
+        width: 321px;
+        height: 569px;
+    }
+}
+
+@media only screen and (width:768px) {
+    #leftSelector:after {
+        left: -483px;
+        font-size: 20px;
+    }
+    #screenCover {
+        top: 110px;
+        left: 107px;
+        width: 321px;
+        height: 569px;
+        opacity: 0;
+    }
+    .elementPanel {
+        position: absolute;
+        width: 420px;
+        height: 500px;
+        top: 345px;
+        left: 30px;
+        -webkit-transform: translateZ(0px);
+        overflow: scroll;
+    }
+    .yesClear {
+        left: 200px!important;
+    }
+    .noClear {
+        left: 250px!important;
+    }
+}
+
+#avatarImage{
+    background-origin: border-box;
+    background-color:transparent!important;
+}
+
+
+body{
+    -webkit-transform: translateZ(0);
+    -webkit-transition: transform 0.2s ease-in-out;
+}

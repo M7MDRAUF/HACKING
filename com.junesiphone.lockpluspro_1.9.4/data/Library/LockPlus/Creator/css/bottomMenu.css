@@ -1,0 +1,787 @@
+/*#bottomMenu::-webkit-scrollbar-track {
+    background-color: transparent;
+}*/
+#bottomMenu{
+    position: absolute;
+    width: 90%;
+    height: 200px;
+    bottom: 60px;
+    left: 0;
+    background-color: white;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*-webkit-clip-path: inset(0 0 0 0 round 40px);*/
+    /*border-radius:20px;*/
+    left:50%;
+    -webkit-transform:translate(-50%, 0);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9;
+    -webkit-overflow-scrolling: touch;
+    max-width: 700px;
+}
+#bottomMenu::-webkit-scrollbar-thumb {
+    border-radius: 0px!important;
+    background-color: black;
+}
+#bottomMenu::-webkit-scrollbar {
+    width: 0px;
+    margin-left: 0px;
+    border-radius: 0px!important;
+    background-color: black;
+}
+#bottomMenuUL {
+    position: absolute;
+    list-style: none;
+    padding:0;
+    margin:0;
+    left: 0px;
+    width: 100%;
+}
+.bottomMenuLI:first-child{
+    margin-top: 10px;
+}
+.bottomMenuLI {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    color: white;
+    list-style-type: none;
+    height: 90px;
+    display: inline-block;
+    font-size: 20px;
+    overflow: hidden;
+    z-index: 999;
+    border-bottom: 1px solid white;
+}
+.miniMenu{
+    position: absolute;
+    left:50%;
+    -webkit-transform:translate(-50%);
+    width:100%;
+    height: 30px;
+    /*padding:10px;*/
+    /*background-color:rgba(0,0,0,0.6);*/
+    color:white;
+    border-radius: 5px;
+    font-size: 23px;
+    line-height: 30px;
+    bottom: 270px; /* bottomMenu height + spacing */
+    /*-webkit-backdrop-filter: blur(10px);*/
+    text-align: center;
+}
+.miniMenu::after{
+    position: absolute;
+    content: attr(title);
+    width: 100%;
+    text-align: center;
+    margin-top:-30px;
+    left:0;
+    font-size:10px;
+}
+.miniMenu::before{
+    position: absolute;
+    content: "";
+    height: 290px;
+    width:95%;
+    left:50%;
+    -webkit-transform:translate(-50%);
+    top:-30px;
+    background: red;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 8%,rgba(255,255,255,0.3) 9%,rgba(255,255,255,0.3) 44%,rgba(255,255,255,0.3) 94%,rgba(0,0,0,1) 95%,rgba(0,0,0,1) 99%);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+}
+.shortcut{
+    position: relative;
+    display: inline-block;
+    width:30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgba(0,0,0,1.0);
+    margin-right: 5px;
+}
+#elPanelDragger {
+    position: absolute;
+    color: black;
+    margin-top: 4px;
+    bottom: 253px;
+    width: 20%;
+    left:50%!important;
+    -webkit-transform:translate(-50%)!important;
+    text-align: center;
+    line-height: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    height: 15px;
+    display: none;
+    font-size: 8px;
+    z-index: 10;
+}
+#elPanelCloser {
+    position: fixed;
+    margin-top:10px;
+    color: white;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    /*padding: 10px;*/
+    height: 16px;
+    line-height: 15px;
+    padding-left: 15px;
+    padding-right:15px;
+    border-radius: 20px;
+    font-size: 16px;
+}
+.liSelected {
+    background-color: #101010!important;
+}
+#bottomMenu::-webkit-scrollbar {
+    width: 0px;
+    margin-left: 0px;
+    border-radius: 0px!important;
+    background-color: black!important;
+}
+.liText::first-letter{
+    text-transform: capitalize;
+}
+.liText {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    color: white;
+    width: 200px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 12px;
+}
+.slider-wrapper {
+    /* width: 100px; */
+    position: absolute;
+    top: 53px;
+    /* left: 40px; */
+}
+
+
+
+.incs, .decs {
+    position: absolute;
+    text-shadow: 0 1px 2px white;
+    width: 30px;
+    height: 30px;
+    margin-top:-3px;
+    background-color: #fff;
+    border-radius: 999px;
+    text-align: center;
+    line-height: 30px;
+    font-family: Times;
+    color: black;
+    padding: 1px;
+    border: 2px solid #fff;
+    background-clip: content-box;
+    z-index: 99;
+}
+.incs {
+    right: -13px;
+}
+.decs {
+    left: -13px;
+}
+/*.decs:before{
+    position: absolute;
+    content: " ";
+    width:48px;
+    height: 12px;
+    background-color:white;
+    margin-top: 9px;
+    margin-left: 20px;
+    z-index: -1;
+}*/
+#bottomMenuUL li {}
+.inputContainer {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 90.5px;
+    height: 60px;
+}
+.inputContainer2 {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 90.5px;
+    height: 60px;
+}
+@media only screen and (max-device-width: 375px) {
+    .slider-wrapper {
+        right: 155px;
+    }
+    .inputContainer {
+        right: 40px;
+    }
+    .inputContainer2 {
+        right: 150px;
+    }
+}
+.manualInput {
+    position: absolute;
+    top: 8px;
+    left: 29px;
+    height: 14.4px;
+    line-height: 14.4px;
+    width: 32px;
+    font-size: 10px!important;
+    text-align: center;
+    border: 0px solid transparent;
+    background-color: white;
+    border-radius: 2px;
+    text-shadow: 0 1px 2px white;
+    z-index: 999;
+}
+#customPrefixInput{
+    background-color: red;
+    border: 0px solid transparent;
+}
+#customSuffixInput{
+    background-color: red;
+    border: 0px solid transparent;
+}
+.inButton {
+    position: absolute;
+}
+.topLabel {
+    position: absolute;
+    top: -14px;
+    right: 32px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #a9acb1;
+}
+.leftLabel {
+    top: -14px;
+    right: 29px;
+    position: absolute;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #a9acb1;
+}
+.openButtons {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    width: 150px;
+    background-color: #fff;
+    color: black;
+    text-align: center;
+    text-shadow: 0 1px 2px white;
+    border-radius: 2px;
+}
+.borderButton {
+    position: absolute;
+    top: 40px;
+    right:10px;
+    width: 60px;
+    background-color: #fff;
+    color: black;
+    text-align: center;
+    text-shadow: 0 1px 2px white;
+    text-align: center;
+}
+.triContain {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    top: 40px;
+    white-space: nowrap;
+    margin:2px;
+    text-align: center;
+}
+.triContain div {
+    display: inline-block;
+    background-color: #fff;
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    border-radius: 2px;
+    margin:2px;
+}
+#editDragger {
+    position: absolute;
+    color: black;
+    margin-top: 4px;
+    bottom: 253px;
+    width: 20%;
+    left:50%!important;
+    -webkit-transform:translate(-50%)!important;
+    text-align: center;
+    line-height: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    height: 15px;
+    display: none;
+    font-size: 8px;
+    z-index: 10;
+}
+.upsizer{
+    position: -webkit-sticky;
+    position: sticky;
+    width: 92%;
+    height: 15px;
+    top:0px;
+    margin-top:10px;
+    text-align: right;
+    /*background-color:red;*/
+    color:white;
+    z-index: 999;
+}
+.closeMenu{
+    position: absolute;
+    /* position: sticky; */
+    width: 92%;
+    height: 15px;
+    top:0px;
+    margin-top:10px;
+    text-align: right;
+    /*background-color:red;*/
+    color:white;
+    z-index: 999;
+}
+.closeMenu::after{
+    position:absolute;
+    content:'';
+    background-color:#343434;
+    width:25px;
+    height:25px;
+    margin-top:-4px;
+    margin-left:-18px;
+    border-radius:99px;
+    z-index: -1;
+    pointer-events: none;
+
+}
+
+.upsizerElements{
+    position: -webkit-sticky;
+    position: sticky;
+    width: 20%;
+    height: 15px;
+    top:0px;
+    margin-top:10px;
+    margin-left:20px;
+    text-align: left;
+    /*background-color:red;*/
+    color:white;
+    z-index: 999;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent!important;
+}
+#elPanel::-webkit-scrollbar-track {
+    display: none;
+}
+#elPanel::-webkit-scrollbar-thumb {
+    display: none;
+}
+#elPanel::-webkit-scrollbar {
+    display: none;
+}
+#elPanel {
+    position: absolute;
+    width: 98%;
+    max-width: 700px;
+    height: 200px;
+    bottom: 60px;
+    left: 0;
+    background-color: white;
+    display: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-clip-path: inset(0 0 0 0 round 40px);
+    border-radius:20px;
+    left:50%;
+    -webkit-transform:translate(-50%, 0);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9;
+    -webkit-overflow-scrolling: touch;
+    /*border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;*/
+}
+#accordion {
+    position: relative;
+    top: -15px;
+    list-style: none;
+    padding: 0 0 0 0;
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+    text-shadow: 0 1px 2px black;
+}
+#accordion div {
+    display: block;
+    padding: 20 5 10 5px;
+    list-style: circle;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/*First layer*/
+#accordion li div {
+    background-color: #101010;
+    /*  border-bottom: 1px solid black; */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/*Second Layer*/
+#accordion>li>ul>li>div {
+    background-color: #202020;
+    color: #fff;
+    font-style: italic;
+}
+
+/* Third Layer */
+
+#accordion ul li {
+    background-color: #343434;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#accordion ul {
+    list-style: none;
+    padding: 0 0 0 0;
+}
+#accordion ul {
+    display: none;
+}
+.accordionInner {
+    color: white;
+}
+.accordionInner ul li {
+    margin: 1px;
+    padding: 15 5 15 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Shadow Menu and Reflections */
+.menuThreeInputsOneButton{
+    position: absolute;
+    bottom: 100px;
+    width: 95%;
+    height: 300px;
+    /*top:300px;*/
+    /*left:50%;
+    -webkit-transform:translateX(-50%) translateZ(0);*/
+    background-color: rgba(255, 255, 255, 0.6)!important;
+    border:1px solid rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+    -webkit-backdrop-filter:blur(10px);
+    border-radius: 10px;
+    z-index: 9999;
+}
+.reflectionMenu{
+    height: 80px;
+}
+.reflectionMenu .exTopLabel{
+    font-weight: bold;
+    margin-top:-15px;
+}
+
+/* Reflection */
+
+
+/* Bar color */
+.menuThreeInputsOneButton::after, .menuThreeInputsOneButton::before{
+    background-color: black;
+}
+/* Top Bar */
+.menuThreeInputsOneButton::after{
+    position: absolute;
+    bottom:0;
+    left:0;
+    content: "";
+    height: 5px;
+    width: 100%;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+/* Bottom Bar */
+.menuThreeInputsOneButton::before{
+    position: absolute;
+    top:0;
+    left:0;
+    content: "";
+    height: 25px;
+    width: 100%;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.exInput0, .exInput1, .exInput2, .exInput3 {
+    position: absolute;
+    top: 23px;
+    width: 80px;
+    height: 60px;
+}
+.exInput0 {
+    left: 20px;
+}
+.exInput1 {
+    left: 110px;
+}
+.exInput2 {
+    left: 200px;
+}
+.exInput3 {
+    left: 300px;
+}
+.exTopLabel {
+    color: white;
+    margin-top: -20px;
+    width: 80px;
+    text-align: center;
+}
+
+/*.exColorButton, .exClearButton {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    width: 80px;
+    height: 20px;
+    background-color: white;
+    border-radius: 3px;
+    text-align: center;
+}*/
+.reflectionClearButton{
+    position: absolute;
+    top: 38px;
+    right: 20px;
+    width: 80px;
+    height: 20px;
+    background-color: white;
+    border-radius: 3px;
+    text-align: center;
+}
+.addShadow, .deleteShadow{
+    position: absolute;
+    width: 120px;
+    height: 20px;
+    background-color: black!important;
+    color:white;
+    border-radius: 3px;
+    text-align: center;
+    bottom:10px;
+}
+.addShadow, .deleteShadow{
+    padding:5px;
+}
+.addColor{
+    position: absolute;
+    text-align: center;
+    bottom:30px;
+    right:20px;
+    width: 70px;
+    background-color:white;
+    color:black;
+}
+.shadowCloseButton, .shadowDragButton{
+    padding:5px;
+    z-index: 9;
+    width: 40px;
+    height: 40px;
+    color:white;
+    z-index: 99;
+}
+.shadowCloseButton{
+    position: absolute;
+    top:-12px;
+    right:2px;
+    /*right:10px;*/
+}
+.shadowDragButton{
+    position: absolute;
+    top:-12px;
+    left:2px;
+    color:white;
+    /*pointer-events: none;*/
+}
+.inactive{
+    pointer-events: none;
+    opacity: 0.2;
+}
+.active{
+    pointer-events: initial;
+    opacity: 1.0;
+}
+.shadowCloseButton::after, .shadowDragButton::after{
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    width: 40px;
+    text-align: center;
+    height: 15px;
+
+    border-radius: 5px;
+    /*background-color: black;*/
+    color:white;
+    content: "Drag";
+    font-size: 9px;
+    line-height: 15px;
+    font-weight: bold;
+    border:2px solid rgba(255,255,255,0.2);
+}
+.shadowDragButton::after{
+    border-top-left-radius: 10px;
+    /*border-top-right-radius: 20px!important;*/
+}
+.shadowCloseButton::after{
+    border-top-right-radius: 10px;
+    content: "Close";
+    /*border-right: 1px solid rgba(255,255,255,0.5);*/
+}
+.addShadow{
+    left:10px;
+}
+.deleteShadow{
+    right:10px;
+}
+.shadowHolder{
+    position: absolute;
+    top:9px;
+    width: 100%;
+    height: 145px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 9;
+    padding: 0;
+    list-style-type: none;
+    /*background-color: red!important;*/
+    display: block;
+    border:1px solid rgba(255,255,255,0.4);
+    box-sizing: border-box;
+}
+.shadowHolder li{
+    list-style: none;
+    text-align: center;
+    line-height: 30px;
+    font-size:12px;
+    background-color: black;
+    color:white;
+    box-sizing: border-box;
+    width: 80%;
+    position: relative;
+    left:50%;
+    -webkit-transform:translate(-50%);
+    height:30px;
+    margin-top:10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.shadowInputHolder{
+    position: absolute;
+    left:50%;
+    bottom:50px;
+    -webkit-transform:translate(-50%);
+    width: 100%;
+    height: 80px;
+    background-color:black;
+}
+.exInc, .exDec {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 999px;
+    text-align: center;
+    line-height: 30px;
+    font-family: Times;
+    color: red;
+}
+.exInc {
+    right: 0;
+}
+.exDec {
+    left: 0;
+}
+.exInput {
+    position: absolute;
+    top: 0;
+    margin-top:15px;
+    left: 24px;
+    width: 30px;
+    text-align: center;
+    border: 0px solid transparent;
+    border-radius: 2px;
+}
+.customCSSInput{
+    width:100%;
+    position:absolute;
+    top:0px;
+    display:block;
+    padding:15px 5px;
+    padding-top:0;
+    font-size:10px;
+}
+@media only screen and (max-device-width: 375px) {
+    .exInput0 {
+        left: 5px;
+    }
+    .exInput1 {
+        left: 95px;
+    }
+    .exInput2 {
+        left: 185px;
+    }
+    .exInput3 {
+        left: 270px;
+    }
+    .exColorButton {
+        right: 5px;
+    }
+}
+@media only screen and (max-device-width: 320px) {
+    .exInput0, .exInput1, .exInput2 {
+        -webkit-transform:scale(0.8);
+    }
+    .exInput1{
+        left:75px;
+    }
+    .exInput2{
+        left:145px;
+    }
+    .exInput3{
+        left:145px;
+    }
+    .exColorButton {
+        margin-top: 7px;
+        width: 90px;
+        right: 5px;
+    }
+    .slider-wrapper {
+        left:20px;
+    }
+}
+/* iPhone X */
+@media only screen and (max-device-width: 375px) and (max-device-height: 812px) {
+    .incs {
+        right: -25px;
+    }
+    .decs {
+        left: -25px;
+    }
+}

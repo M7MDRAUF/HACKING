@@ -1,0 +1,205 @@
+
+/* Colors */
+
+/*
+
+    li #50514f
+    li highlight #eaeaea
+    li border #5c6361
+
+*/
+
+/* Circle Menu Button menu.css */
+#roundMenu{
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 1);
+    border: 2px solid #eaeaea;
+}
+
+#undomenu, #redomenu, #undomenu {
+    background-color: #eaeaea;
+    color:black;
+    opacity: 0;
+}
+
+
+#clearDiv button {
+    color: white;
+}
+.yesClear {
+    left:200px;
+    background-color:rgba(0,0,0,0.5)!important;
+}
+.noClear {
+    left:260px;
+    background-color:rgba(0,0,0,0.5)!important;
+}
+
+
+/* Element Selection Menu menu.css */
+#elPanel {
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Element Section Menu lines */
+#accordion li div {
+    background-color: transparent;
+    border-bottom: 1px solid #5c6361;
+    border-bottom: 1px solid rgba(92,99,97, 0.5);
+}
+
+#accordion>li>ul>li>div {
+    background-color: black;
+    color: #fff;
+}
+#accordion ul li {
+    background-color: rgba(34,34,34,0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.accordionInner {
+    color: white;
+}
+#elPanelDragger, #elPanelCloser {
+    background-color: #eaeaea;
+    color:black;
+}
+.liSelected {
+    background-color: #eaeaea!important;
+    color:black;
+}
+
+
+/* Element edit menu menu.css */
+#bottomMenu{
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 10px;
+}
+.bottomMenuLI {
+    background-color: transparent;
+    border-bottom: 1px solid #5c6361;
+    border-bottom: 1px solid rgba(92,99,97, 0.5);
+}
+.shortcut {
+    background-color: rgba(0,0,0,0.9);
+}
+#editDragger {
+    color:black;
+    background-color: #eaeaea;
+}
+#customPrefixInput{
+    background-color: #eaeaea;
+    border: 0px solid transparent;
+}
+#customSuffixInput{
+    background-color: #eaeaea;
+    border: 0px solid transparent;
+}
+
+/* sliders */
+.range-bar {
+    background-color: #a9acb1;
+}
+.range-handle {
+    background-color: #eaeaea;
+}
+.range-quantity {
+    background-color: #eaeaea;
+}
+
+.incs, .decs {
+    color:black;
+    background-color: #eaeaea;
+    border: 2px solid #eaeaea;
+    text-shadow: 0 1px 2px white;
+}
+.decs:before{
+    background-color: #eaeaea;
+}
+
+.manualInput {
+    background-color: #eaeaea;
+    text-shadow: 0 1px 2px white;
+}
+
+.topLabel, .leftLabel{
+    color:white;
+}
+
+.openButtons{
+    background-color: #eaeaea;
+    color: black;
+    text-shadow: 0 1px 2px white;
+}
+
+.borderButton{
+    background-color: #eaeaea;
+}
+
+.triContain div {
+    background-color: #eaeaea;
+    color: black;
+}
+
+/* Shadow Menu and Reflections */
+.menuThreeInputsOneButton{
+    background-color: rgba(0,0,0,0.5);
+}
+.exColorButton {
+    background-color: #eaeaea;
+}
+.exInc, .exDec {
+    background-color: #eaeaea;
+    color:black;
+}
+.exInput {
+    background-color: #eaeaea;
+}
+
+/*#font li{
+    background-color: rgba(0,0,0,0.5)!important;
+}*/
+
+#userFontHolder{
+    background-color: rgba(0,0,0,0.5);
+    color:white;
+}
+#closeFontList{
+    background-color: rgba(34,34,34,0.5);
+    color:white;
+}
+.customCSSInput{
+    background-color:#eaeaea;
+}
+
+
+/* Color Picker */
+.sp-container button {
+    background-color: #eaeaea;
+    color: #50514f;
+}
+.sp-container button:hover {
+    background-color: #eaeaea;
+}
+.sp-container{
+    background-color: rgba(255,255,255,0.3);
+    border:1px solid black;
+    -webkit-backdrop-filter: blur(15px);
+}
+.sp-cancel {
+    color:black;
+}
+.sp-container-header{
+    background-color:black;
+}
+.sp-container-drag{
+    color:white;
+    background-color:black;
+}
+.sp-color, .sp-hue, .sp-clear {
+    border: solid 1px black;
+}
+.sp-input {
+    border: 1px solid black;
+    color:black;
+}
+
