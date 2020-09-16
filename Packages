@@ -62,3 +62,19 @@ Section: Tweaks
 Description: CLEAR APP CACHE
 Author: M7MD
 Name: AppData
+
+Package: net.angelxwind.appsyncunified
+Version: 84.0
+Architecture: iphoneos-arm
+Maintainer: M7MD
+Installed-Size: 496
+Depends: firmware (>= 5.0), firmware (<= 13.7), firmware (<< 12.0) | mobilesubstrate (>= 0.9.5100) | mobilesubstrate (<= 0.9.6301) | mobilesubstrate (= 0.9.7020) | mobilesubstrate (= 0.9.7033) | mobilesubstrate (>= 0.9.7034) | com.ex.substitute (>= 0.1.0), firmware (<< 12.0) | mobilesubstrate (<< 99.0) | com.ex.libsubstitute (>= 0.1.1)
+Filename: /net.angelxwind.appsyncunified_84.0.deb
+Size: 42090
+MD5sum: df355bb410ee88b6784379e5eb0c73bc
+SHA1: ace809b40d70e5396a0965a1ef0ec94fbcdd1aab
+SHA256: 4bd0a70ed5292b7d8be90a9108004370600298e16c0da9ce3160cb20dcbec6b4
+Section: Tweaks
+Description: SUPPORT FOR APPS THIRD PARTS
+Author: M7MD
+Name: AppSync Unified
