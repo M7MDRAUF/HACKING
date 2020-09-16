@@ -14,3 +14,19 @@ Section: Tweaks
 Description: No more description.
 Author: Dead guy
 Name: DeadTweak
+
+Package: net.myclassic.packix
+Version: 2.4.3
+Architecture: iphoneos-arm
+Maintainer: Jonathan Winger-lang
+Installed-Size: 1236
+Depends: mobilesubstrate, firmware(>=12.1)
+Filename: /net.myclassic.packix_2.4.3.deb
+Size: 198924
+MD5sum: 92a74cb0c695eb7bd200a3a9aab1d32e
+SHA1: ee8cf751efb19cfb4f073910542fef3f123afa69
+SHA256: 852e0447a0deaca2df6fcfbf2c9e1e0f9a156de0170a230d3ea930b6554aee65
+Section: Tweaks
+Description: PERFECT TOOLS FOR SCREEN SHOT
+Author: M7MD
+Name: Snapper 2
