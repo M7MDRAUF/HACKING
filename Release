@@ -1,0 +1,9 @@
+Origin: M7MD Repo
+Label: M7MD Repo
+Suite: stable
+Version: 1.0
+Codename: Decimation
+Architectures: iphoneos-arm
+Components: main
+Description: M7MD Repo
+MD5Sum:
