@@ -110,3 +110,19 @@ Section: HYI - Tweaks
 Description: hide secret App and open with password.
 Author: CUNSTUCK <repo@hackyouriphone.org>
 Name: AFakerX
+
+Package: net.myclassic.AtWillSign
+Version: 1.2
+Architecture: iphoneos-arm
+Maintainer: M7MD
+Installed-Size: 
+Depends: firmware (>= 10.0), mobilesubstrate (>= 0.9.5000), preferenceloader, com.rpetrich.rocketbootstrap | com.hackyouriphone.rocketbootstrap
+Filename: /net.myclassic.AtWillSign_1.2.deb
+Size: 3012080
+MD5sum: 33985e026f233bd97ebef8b55d166938
+SHA1: b2290d3a784d30cbc56cac9a03fee906f5983979
+SHA256: 0e18c686628dc5063c6fe985a943710ea759000e8c0fc9961283b7a46ae1f2dc
+Section: Tweaks
+Description: install ipa apps
+Author: M7MD
+Name: Sing Apps
