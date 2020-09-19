@@ -94,3 +94,19 @@ Section: Addons (Tweaks)
 Description: LOCK YOUR APPS
 Author: M7MD
 Name: LockPlus Pro
+
+Package: com.hackyouriphone.afakerx
+Version: 2.0-1k
+Architecture: iphoneos-arm
+Maintainer: HackYouriPhone <repo@hackyouriphone.org>
+Installed-Size: 
+Depends: firmware (>= 10.0), mobilesubstrate (>= 0.9.5000), preferenceloader, com.rpetrich.rocketbootstrap | com.hackyouriphone.rocketbootstrap
+Filename: /com.hackyouriphone.afakerx_2.0-1k.deb
+Size: 176318
+MD5sum: 4581280c8c1efda52ed018d0e04daa6d
+SHA1: d53cfd88f393f3aa8e085499cc7b48222584376c
+SHA256: 240a3fb31a6da8f39a9522f495cb6542a45a11e90908f41b1c422e6f1023cf6a
+Section: HYI - Tweaks
+Description: hide secret App and open with password.
+Author: CUNSTUCK <repo@hackyouriphone.org>
+Name: AFakerX
