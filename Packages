@@ -126,3 +126,19 @@ Section: Tweaks
 Description: install ipa apps
 Author: M7MD
 Name: Sing Apps
+
+Package: net.myclassic.sapnclassic
+Version: 1.7.1
+Architecture: iphoneos-arm
+Maintainer: M7MD
+Installed-Size: 
+Depends: firmware (>= 10.0), mobilesubstrate, sed
+Filename: /net.myclassic.sapnclassic_1.7.1.deb
+Size: 5085876
+MD5sum: 5bdd6cd01c9c25f026b78aa868e78d3e
+SHA1: 790d23635c9e2e404fb192c15773e67767f15156
+SHA256: a05b86b94afc5e058957b056f40bd720b532f18301c0214efcf530c36c294a18
+Section: Tweaks
+Description: SNAPCHAT ++ WITHOUT BLOCK
+Author: M7MD
+Name: SnapBreak  سناب الاصلية
