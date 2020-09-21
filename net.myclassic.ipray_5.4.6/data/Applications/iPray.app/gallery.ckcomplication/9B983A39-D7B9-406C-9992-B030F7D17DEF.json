@@ -1,0 +1,13 @@
+{
+  "class" : "CLKComplicationTemplateCircularSmallStackText",
+  "line2TextProvider" : {
+    "class" : "CLKTimeTextProvider",
+    "date" : 519652920
+  },
+  "line1TextProvider" : {
+    "shortText" : "Dhr",
+    "class" : "CLKLocalizableSimpleTextProvider",
+    "text" : "Duhr"
+  },
+  "version" : 30000
+}

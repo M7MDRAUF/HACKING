@@ -1,0 +1,13 @@
+{
+  "class" : "CLKComplicationTemplateModularLargeStandardBody",
+  "body1TextProvider" : {
+    "class" : "CLKTimeTextProvider",
+    "date" : 519652920
+  },
+  "version" : 30000,
+  "headerTextProvider" : {
+    "shortText" : "Dhr",
+    "class" : "CLKLocalizableSimpleTextProvider",
+    "text" : "Duhr"
+  }
+}

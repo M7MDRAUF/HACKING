@@ -1,0 +1,23 @@
+{
+  "textProvider" : {
+    "textProviders" : [
+      {
+        "shortText" : "Dhr",
+        "class" : "CLKLocalizableSimpleTextProvider",
+        "text" : "Duhr"
+      },
+      {
+        "class" : "CLKTimeTextProvider",
+        "date" : 519652920
+      }
+    ],
+    "class" : "CLKCompoundTextProvider",
+    "format segments" : [
+      "",
+      " ",
+      ""
+    ]
+  },
+  "class" : "CLKComplicationTemplateUtilitarianSmallFlat",
+  "version" : 30000
+}

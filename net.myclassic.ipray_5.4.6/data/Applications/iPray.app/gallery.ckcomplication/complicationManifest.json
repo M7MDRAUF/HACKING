@@ -1,0 +1,11 @@
+{
+  "supported complication families" : {
+    "3" : "237CDC6F-D7C9-40FC-A20B-25BE9865198D.json",
+    "1" : "B9292780-DC65-4B24-883C-F28221EB8B1B.json",
+    "6" : "6434018F-0D53-474B-A6FA-8106D7ED551C.json",
+    "4" : "9B983A39-D7B9-406C-9992-B030F7D17DEF.json",
+    "2" : "1074EC53-7864-45EB-8AEC-DCAA1FFAB762.json",
+    "0" : "69396D78-4753-4081-AAE6-39CE425AA088.json"
+  },
+  "client ID" : "com.guidedways.iPrayPro.watchkitapp.watchkitextension"
+}

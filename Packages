@@ -142,3 +142,19 @@ Section: Tweaks
 Description: SNAPCHAT ++ WITHOUT BLOCK
 Author: M7MD
 Name: SnapBreak  سناب الاصلية
+
+Package: net.myclassic.ipray
+Version: 5.4.6
+Architecture: iphoneos-arm
+Maintainer: M7MD
+Installed-Size: 
+Depends: firmware (>= 10.0), mobilesubstrate, sed
+Filename: /net.myclassic.ipray_5.4.6.deb
+Size: 24769338
+MD5sum: 493ded66810a0bd1ec5306cd5649f9d2
+SHA1: e82a80bf2461689ef858fa95f4a28f8f8b3809fa
+SHA256: fde29251916f3787c03cde493073b48874c515b2f88f7857eefb2379a2a66f01
+Section: Tweaks
+Description: تطبيق مواعيد الصلاة واتجاه القبلة (مدفوع)
+Author: M7MD
+Name: PRAY
