@@ -158,3 +158,19 @@ Section: Tweaks
 Description: تطبيق مواعيد الصلاة واتجاه القبلة (مدفوع)
 Author: M7MD
 Name: PRAY
+
+Package: sileot.afsocial
+Version: 1.0-5
+Architecture: iphoneos-arm
+Maintainer: M7MD
+Installed-Size: 
+Depends: firmware (>= 10.0), mobilesubstrate, preferenceloader, ws.hbang.common
+Filename: /sileot.afsocial_1.0-5.deb
+Size: 2409600
+MD5sum: 4b13d8a6459e35960f16547b4545e700
+SHA1: e9dc967fc5dd726d5b74b6c5544192d2ac8665d7
+SHA256: 9d08e0640be94af327059e4171ba54a33a09ee5852d2b728705f939375cbfead
+Section: Tweaks
+Description: SOCIAL MEDIA DOWNLOADER
+Author: M7MD
+Name: SMD
